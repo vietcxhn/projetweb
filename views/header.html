@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>J'adore cuisiner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">App</a>
+      {{#authenticated}}
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li><a href="/search" class="btn btn-primary mr-2">Toutes les recettes</a></li>
+      <li><a href="/create" class="btn btn-primary mr-2">Créer une recette</a></li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="/search">
+      <input class="form-control mr-sm-2" type="text" placeholder="Requête" name="query" aria-label="Search" value="{{query}}">
+      <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Rechercher">
+    </form>
+    <a class="navbar-brand" href="">{{name}}</a>
+    
+    <form action="/logout" method="post"><input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Se deconnecter"></input></form>
+    
+  </div>
+    {{/authenticated}}
+    {{^authenticated}}
+    <a href="/login" class="btn btn-primary mr-2">Login</a>
+    <a href="/signup" class="btn btn-primary mr-2">Signup</a>
+    {{/authenticated}}
+</nav>
+
+<main role="main" class="container" style="margin-top: 3rem">
