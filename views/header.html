@@ -17,37 +17,37 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="btn btn-primary mr-2" href="/search">Learn about plants</a>
         </li>
         {{#authenticated}}
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="btn btn-primary mr-2" href="create">Add a plant</a>
         </li>
-        {{#authenticated}}
+        {{/authenticated}}
       </ul>
       <form class="d-flex" action="/search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" type="text" placeholder="Request" name="query" aria-label="Search" value="{{query}}">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {{#authenticated}}
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            {{username}}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li><form class="dropdown-item" action="/logout" method="post"><input class="nav-link active" type="submit" value="Se deconnecter"></form></li>
           </ul>
         </li>
         {{/authenticated}}
         {{^authenticated}}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="btn btn-primary mr-2" href="/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="btn btn-primary mr-2" href="/signup">Signup</a>
         </li>
         {{/authenticated}}
       </ul>
