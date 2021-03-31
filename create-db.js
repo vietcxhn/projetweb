@@ -8,7 +8,7 @@ let db = new Sqlite('db.sqlite');
 
 var entries = JSON.parse(fs.readFileSync('data.json').toString());
 var load = function(filename) {
-  const recipes = JSON.parse(fs.readFileSync(filename));
+  const plants = JSON.parse(fs.readFileSync(filename));
 
   db.prepare('DROP TABLE IF EXISTS user').run();
   db.prepare('CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, password TEXT)').run();
@@ -17,18 +17,17 @@ var load = function(filename) {
 
   db.prepare('CREATE TABLE plants (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT)').run();
 
-  var insert1 = db.prepare('INSERT INTO recipe VALUES (@id, @title, @img, @description, @duration)');
+  var insert1 = db.prepare('INSERT INTO plants VALUES (@id, @name, @description, @image)');
 
-  var transaction = db.transaction((recipes) => {
-
-    for(var id = 0;id < recipes.length; id++) {
-      var recipe = recipes[id];
-      recipe.id = id;
-      insert1.run(recipe);
+  var transaction = db.transaction((plants) => {
+    for(var id = 0;id < plants.length; id++) {
+      var plant = plants[id];
+      plant.id = id;
+      insert1.run(plant);
     }
   });
 
-  transaction(recipes);
+  transaction(plants);
 }
 
 load('plantes.json');
