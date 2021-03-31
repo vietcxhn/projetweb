@@ -52,3 +52,9 @@ exports.login = (name, password) => {
   }
   else return -1;
 }
+
+exports.signup = (name, password) => {
+  if (db.prepare('SELECT * FROM user WHERE name = ?').get(name)) return -1;
+  let id = db.prepare('INSERT INTO user (name, password) VALUES (?, ?)').run(name, password).lastInsertRowid;
+  return id;
+}

@@ -58,7 +58,15 @@ app.post('/logout', (req, res) => {
 });
 
 app.get('/signup', (req, res) => {
-  res.render('')
+  res.render('signup');
+});
+
+app.post('/signup', (req, res) => {
+  if (model.signup(req.body.name, req.body.password) != -1);
+  model.login(req.body.name, req.body.password);
+  req.session.id = model.login(req.body.name, req.body.password)
+  req.session.user = req.body.name
+  res.redirect('/')
 });
 
 /* Retourne une page principale avec le nombre de recettes */
