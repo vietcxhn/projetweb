@@ -1,5 +1,32 @@
 {{> header}}
 
-  
+  <div class="row">
+    <div class="col">
+      <h1>{{num_found}} plants found {{#page}} (page {{page}}/{{num_pages}}) {{/page}}</h1>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+      {{#results}}
+      <div class="col mb-3">
+        <a href="/read/{{entry}}">
+          <div class="card mb-4 h-100">
+            <img class="card-img-top" src="{{image}}">
+            <div class="card-body">
+                <p class="card-text">{{name}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      {{/results}}
+  </div>
+
+  {{#next_page}}
+  <div class="row">
+    <div class="col">
+      <a class="btn btn-primary" href="/search?query={{query}}&page={{next_page}}">Page suivante</a>
+    </div>
+  </div>
+  {{/next_page}}
 
 {{> footer}}

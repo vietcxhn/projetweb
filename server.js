@@ -23,11 +23,11 @@ app.use(cookieSession({
 
 app.use(function (req, res, next) {
   if(req.session.user) {
-    res.locals.name = req.session.user;
+    res.locals.username = req.session.user;
     res.locals.authenticated = true;
   }
   else {
-    res.locals.name = ""
+    res.locals.username = ""
     res.locals.authenticated = false;
   }
   next()
