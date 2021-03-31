@@ -10,23 +10,25 @@
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Plant</a>
-      {{#authenticated}}
+      
+    {{#authenticated}}
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li><a href="/search" class="btn btn-primary mr-2">Toutes les recettes</a></li>
-      <li><a href="/create" class="btn btn-primary mr-2">Créer une recette</a></li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0" action="/search">
-      <input class="form-control mr-sm-2" type="text" placeholder="Requête" name="query" aria-label="Search" value="{{query}}">
-      <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Rechercher">
-    </form>
-    <a class="navbar-brand" href="">{{name}}</a>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li><a href="/search" class="btn btn-primary mr-2">Toutes les recettes</a></li>
+        <li><a href="/create" class="btn btn-primary mr-2">Créer une recette</a></li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="/search">
+        <input class="form-control mr-sm-2" type="text" placeholder="Requête" name="query" aria-label="Search" value="{{query}}">
+        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Rechercher">
+      </form>
+      <a class="navbar-brand" href="">{{name}}</a>
+
+      <form action="/logout" method="post"><input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Se deconnecter"></form>
+    </div>
     
-    <form action="/logout" method="post"><input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Se deconnecter"></input></form>
-    
-  </div>
     {{/authenticated}}
+    
     {{^authenticated}}
     <div>
       <a href="/login" class="btn btn-primary">Login</a>

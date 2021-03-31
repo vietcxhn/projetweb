@@ -45,11 +45,11 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
   if (model.login(req.body.name, req.body.password) != -1){
-    req.session.id = model.login(req.body.name, req.body.password)
-    req.session.user = req.body.name
-    res.redirect('/')
+    req.session.id = model.login(req.body.name, req.body.password);
+    req.session.user = req.body.name;
+    res.redirect('/');
   }
-  res.redirect('/login');
+  else res.redirect('/login');
 });
 
 app.post('/logout', (req, res) => {
@@ -62,11 +62,13 @@ app.get('/signup', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-  if (model.signup(req.body.name, req.body.password) != -1);
-  model.login(req.body.name, req.body.password);
-  req.session.id = model.login(req.body.name, req.body.password)
-  req.session.user = req.body.name
-  res.redirect('/')
+  if (model.signup(req.body.name, req.body.password) != -1) {
+    model.login(req.body.name, req.body.password);
+    req.session.id = model.login(req.body.name, req.body.password);
+    req.session.user = req.body.name;
+    res.redirect('/');
+  }
+  else res.redirect('signup');
 });
 
 /* Retourne une page principale avec le nombre de recettes */
