@@ -27,16 +27,16 @@
             <input class="form-control mr-sm-2" type="text" placeholder="Request" name="query" aria-label="Search" value="{{query}}">
             <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
           </form>
+          <ul class="navbar-nav mr-auto">
           {{#authenticated}}
-          <a class="navbar-brand" href="">{{name}}</a>
-
-          <form action="/logout" method="post"><input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Se deconnecter"></form>
+            <li><a class="navbar-brand" href="">{{username}}</a></li>
+            <li><form action="/logout" method="post"><input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Se deconnecter"></form></li>
           {{/authenticated}}
           {{^authenticated}}
-          <a href="/login" class="btn btn-primary">Login</a>
-          <a href="/signup" class="btn btn-primary">Sign up</a>
-          
+            <li><a href="/login" class="btn btn-primary">Login</a></li>
+            <li><a href="/signup" class="btn btn-primary">Sign up</a></li>
           {{/authenticated}}
+          </ul>
         </div>
 
         
