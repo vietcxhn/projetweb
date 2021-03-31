@@ -6,7 +6,7 @@ const Sqlite = require('better-sqlite3');
 let db = new Sqlite('db.sqlite');
 
 
-var entries = JSON.parse(fs.readFileSync('data.json').toString());
+var entries = JSON.parse(fs.readFileSync('plantes.json').toString());
 var load = function(filename) {
   const plants = JSON.parse(fs.readFileSync(filename));
 

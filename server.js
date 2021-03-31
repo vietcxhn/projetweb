@@ -57,6 +57,10 @@ app.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
+app.get('/signup', (req, res) => {
+  res.render('')
+});
+
 /* Retourne une page principale avec le nombre de recettes */
 app.get('/', (req, res) => {
   console.log(res.locals)

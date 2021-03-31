@@ -9,7 +9,7 @@
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">App</a>
+    <a class="navbar-brand" href="/">Plant</a>
       {{#authenticated}}
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
@@ -28,8 +28,10 @@
   </div>
     {{/authenticated}}
     {{^authenticated}}
-    <a href="/login" class="btn btn-primary mr-2">Login</a>
-    <a href="/signup" class="btn btn-primary mr-2">Signup</a>
+    <div>
+      <a href="/login" class="btn btn-primary">Login</a>
+      <a href="/signup" class="btn btn-primary">Sign up</a>
+    </div>
     {{/authenticated}}
 </nav>
 
