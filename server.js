@@ -47,6 +47,7 @@ app.post('/login', (req, res) => {
   if (model.login(req.body.name, req.body.password) != -1){
     req.session.id = model.login(req.body.name, req.body.password);
     req.session.user = req.body.name;
+    console.log(req.session.user)
     res.redirect('/');
   }
   else res.redirect('/login');
