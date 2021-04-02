@@ -38,8 +38,8 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#">Profile</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><form class="dropdown-item" action="/logout" method="post"><input class="nav-link active" type="submit" value="Se deconnecter"></form></li>
-            </ul>
+              <li><a class="dropdown-item" href="/logout">Log out</a></li>
+              </ul>
           </li>
           {{/authenticated}}
           {{^authenticated}}

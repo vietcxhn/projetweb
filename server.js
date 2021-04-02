@@ -53,7 +53,7 @@ app.post('/login', (req, res) => {
   else res.redirect('/login');
 });
 
-app.post('/logout', (req, res) => {
+app.get('/logout', (req, res) => {
   req.session = null;
   res.redirect('/');
 });
