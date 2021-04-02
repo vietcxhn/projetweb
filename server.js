@@ -72,19 +72,15 @@ app.post('/signup', (req, res) => {
   else res.redirect('signup');
 });
 
-/* Retourne une page principale avec le nombre de recettes */
 app.get('/', (req, res) => {
-  console.log(res.locals)
   res.render('index');
 });
 
-/* Retourne les résultats de la recherche à partir de la requête "query" */
 app.get('/search', (req, res) => {
   var found = model.search(req.query.query, req.query.page);
   res.render('search', found);
 });
 
-/* Retourne le contenu d'une recette d'identifiant "id" */
 app.get('/read/:id', (req, res) => {
   var entry = model.read(req.params.id);
   res.render('read', entry);
