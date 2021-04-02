@@ -81,6 +81,7 @@ app.post('/signup', (req, res) => {
 });
 
 app.get('/', (req, res) => {
+  console.log(res.locals)
   res.render('index');
 });
 
