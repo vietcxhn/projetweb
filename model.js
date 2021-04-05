@@ -61,7 +61,19 @@ exports.signup = (name, password) => {
 
 function add(set) {
   let plants = db.prepare('SELECT * FROM plants').all();
-  let random = Math.floor(Math.random()*plants.length)
+  let q = {
+    set : [],
+    answer : null
+  };
+  
+  for (let i = 0; i < 4; i++) {
+    while(true){
+      let random = Math.floor(Math.random() * plants.length);
+      
+    }
+    
+    
+  }
   
   
   return set;
