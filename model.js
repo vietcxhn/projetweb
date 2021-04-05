@@ -88,6 +88,6 @@ exports.generateMCQs = () => {
 }
 
 exports.is_admin = (id) => {
-  if(db.prepare('SELECT admin FROM user WHERE id = ?').get(id) == 1) return true;
-  return false;
+  if(db.prepare('SELECT admin FROM user WHERE id = ?').get(id).admin == 1) return true;
+  else return false;
 }
