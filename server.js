@@ -46,11 +46,9 @@ app.post('/login', (req, res) => {
     req.session.user = req.body.name;
     console.log(req.session.user)
     res.redirect('/');
-    res.locals.loginfail = false;
   }
   else {
-    res.locals.loginfail = true;
-    res.redirect('/login');
+    res.redirect('/login', {"loginfail" : true});
   }
 });
 
@@ -69,11 +67,10 @@ app.post('/signup', (req, res) => {
     req.session.id = model.login(req.body.name, req.body.password);
     req.session.user = req.body.name;
     res.redirect('/');
-    res.locals.signupfail = false;
+
   }
   else {
-    res.locals.signupfail = true;
-    res.redirect('signup');
+    res.redirect('/signup');
   }
 });
 
