@@ -11,8 +11,9 @@ var load = function(filename) {
   const plants = JSON.parse(fs.readFileSync(filename));
 
   db.prepare('DROP TABLE IF EXISTS user').run();
-  db.prepare('CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, password TEXT)').run();
-
+  db.prepare('CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, password TEXT, a ENUM("admin", "user")').run();
+  db.prepare('INSERT INTO user (name, password, a) VALUES ("admin", "admin", "admin")');
+  
   db.prepare('DROP TABLE IF EXISTS plants').run();
 
   db.prepare('CREATE TABLE plants (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT)').run();
