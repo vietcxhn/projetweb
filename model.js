@@ -60,7 +60,11 @@ exports.signup = (name, password) => {
 }
 
 function add(set) {
+  let plants = db.prepare('SELECT * FROM plants').all();
+  let random = Math.floor(Math.random()*plants.length)
   
+  
+  return set;
 }
 
 exports.generateMCQs = () => {
