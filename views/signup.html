@@ -2,8 +2,12 @@
 
 	<form action="/signup" method="post">
     <h2>Sign Up</h2>
-		<p>Name : <input class="form-control" type="text" name="name"></p>
+    {{#signup_fail}}
+    <p class="text-danger">Username already existed</p>
+    {{/signup_fail}}
+		<p>Username : <input class="form-control" type="text" name="name"></p>
 		<p>Password : <input class="form-control" type="password" name="password"></p>
+    <p>Confirm Password : <input class="form-control" type="password" name="c_password"></p>
 		<input class="form-control btn btn-primary" type="submit" value="Sign up">
 	</form>
 

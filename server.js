@@ -31,6 +31,10 @@ app.use(function (req, res, next) {
     res.locals.loginfail = true;
     req.session.loginfail = null;
   }
+  if(req.session.signupfail){
+    res.locals.signupfail = true;
+    req.session.signupfail = null;
+  }
   next()
 });
 
@@ -67,14 +71,14 @@ app.get('/signup', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-  if (model.signup(req.body.name, req.body.password) != -1) {
+  if (req.body.password == req.body.c_password && model.signup(req.body.name, req.body.password) != -1) {
     model.login(req.body.name, req.body.password);
     req.session.id = model.login(req.body.name, req.body.password);
     req.session.user = req.body.name;
     res.redirect('/');
-
   }
   else {
+    req.session.signupfail = true;
     res.redirect('/signup');
   }
 });

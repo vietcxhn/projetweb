@@ -2,10 +2,10 @@
   
 	<form action="/login" method="post">
     <h2>Login</h2>
-    {{#loginfail}}
-    <p class="text-danger">Name/Password invalid</p>
-    {{/loginfail}}
-		<p>Name : <input class="form-control" type="text" name="name"></p>
+    {{#login_fail}}
+    <p class="text-danger">Username/Password invalid</p>
+    {{/login_fail}}
+		<p>Username : <input class="form-control" type="text" name="name"></p>
 		<p>Password : <input class="form-control" type="password" name="password"></p>
 		<input class="form-control btn btn-primary" type="submit" value="Login">
 	</form>
