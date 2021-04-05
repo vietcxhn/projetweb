@@ -27,6 +27,7 @@ app.use(function (req, res, next) {
     res.locals.username = ""
     res.locals.authenticated = false;
   }
+  
   next()
 });
 
@@ -48,7 +49,7 @@ app.post('/login', (req, res) => {
     res.redirect('/');
   }
   else {
-    res.redirect('/login', { "loginfail" : "Name/Password invalid" });
+    res.redirect('/login');
   }
 });
 
