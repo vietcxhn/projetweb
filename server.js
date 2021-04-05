@@ -1,20 +1,17 @@
 "use strict"
-/* Serveur pour le site de recettes */
+
 var express = require('express');
 var mustache = require('mustache-express');
 
 var model = require('./model');
 var app = express();
 
-// parse form arguments in POST requests
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.engine('html', mustache());
 app.set('view engine', 'html');
 app.set('views', './views');
-
-/**** Routes pour voir les pages du site ****/
 
 const cookieSession = require('cookie-session');
 app.use(cookieSession({
@@ -109,9 +106,6 @@ app.get('/delete/:id', (req, res) => {
   res.render('delete', {id: req.params.id, title: entry.title});
 });
 
-/**** Routes pour modifier les données ****/
-
-// Fonction qui facilite la création d'une recette
 function post_data_to_recipe(req) {
   return {
     title: req.body.title, 
