@@ -58,3 +58,12 @@ exports.signup = (name, password) => {
   let id = db.prepare('INSERT INTO user (name, password) VALUES (?, ?)').run(name, password).lastInsertRowid;
   return id;
 }
+
+function add(set) {
+  
+}
+
+exports.generateMCQs = () => {
+  
+}
+
