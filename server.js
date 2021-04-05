@@ -27,13 +27,13 @@ app.use(function (req, res, next) {
     res.locals.username = ""
     res.locals.authenticated = false;
   }
-  if(req.session.loginfail){
-    res.locals.loginfail = true;
-    req.session.loginfail = null;
+  if(req.session.login_fail){
+    res.locals.login_fail = true;
+    req.session.login_fail = null;
   }
-  if(req.session.signupfail){
-    res.locals.signupfail = true;
-    req.session.signupfail = null;
+  if(req.session.signup_fail){
+    res.locals.signup_fail = true;
+    req.session.signup_fail = null;
   }
   next()
 });
@@ -56,7 +56,7 @@ app.post('/login', (req, res) => {
     res.redirect('/');
   }
   else {
-    req.session.loginfail = true;
+    req.session.login_fail = true;
     res.redirect('/login');
   }
 });
@@ -78,7 +78,7 @@ app.post('/signup', (req, res) => {
     res.redirect('/');
   }
   else {
-    req.session.signupfail = true;
+    req.session.signup_fail = true;
     res.redirect('/signup');
   }
 });

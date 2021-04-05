@@ -3,11 +3,12 @@
 	<form action="/login" method="post">
     <h2>Login</h2>
     {{#login_fail}}
-    <p class="text-danger">Username/Password invalid</p>
+    <p class="text-danger">Wrong Username/Password</p>
     {{/login_fail}}
 		<p>Username : <input class="form-control" type="text" name="name"></p>
 		<p>Password : <input class="form-control" type="password" name="password"></p>
 		<input class="form-control btn btn-primary" type="submit" value="Login">
 	</form>
+  <a class="text-center" href="/signup">Create account</a>
 
 {{> footer}}
