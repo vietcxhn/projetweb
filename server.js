@@ -27,28 +27,32 @@ app.use(function (req, res, next) {
     res.locals.username = ""
     res.locals.authenticated = false;
   }
-  
+  if(req.session.loginfail){
+    res.locals.loginfail = true;
+    req.session.loginfail = null;
+  }
   next()
 });
 
 function is_authenticated(req, res, next) {
   console.log(req.session)
-  if(!req.session.user)res.send(401)
+  if(!req.session.user) res.send(401)
   else next();
 };
 
 app.get('/login', (req, res) => {
-  res.render('login')
+  res.render('login');
 });
 
 app.post('/login', (req, res) => {
   if (model.login(req.body.name, req.body.password) != -1){
     req.session.id = model.login(req.body.name, req.body.password);
     req.session.user = req.body.name;
-    console.log(req.session.user)
+    console.log(req.session.user);
     res.redirect('/');
   }
   else {
+    req.session.loginfail = true;
     res.redirect('/login');
   }
 });
