@@ -65,21 +65,25 @@ function add(set) {
     set : [],
     answer : null
   };
-  
   for (let i = 0; i < 4; i++) {
     while(true){
       let random = Math.floor(Math.random() * plants.length);
-      
+      if(!q.set.includes(random)){
+        q.set.push(random);
+        break;
+      }
     }
-    
-    
   }
-  
-  
+  q.answer = q.set[Math.floor(Math.random() * 4)];
+  set.push(q);
   return set;
 }
 
 exports.generateMCQs = () => {
-  
+  let set = [];
+  for (let i = 0; i < 20; i++) {
+    add(set);
+  }
+  return set;
 }
 
