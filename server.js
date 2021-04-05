@@ -48,7 +48,7 @@ app.post('/login', (req, res) => {
     res.redirect('/');
   }
   else {
-    res.redirect('/login', {"loginfail" : true});
+    res.redirect('/login', { "loginfail" : "Name/Password invalid" });
   }
 });
 
