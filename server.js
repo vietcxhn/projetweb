@@ -40,7 +40,7 @@ app.use(function (req, res, next) {
 
 function is_authenticated(req, res, next) {
   console.log(req.session)
-  if(!req.session.user) res.send(401)
+  if(!req.session.is_admin) res.send(401)
   else next();
 };
 
@@ -102,12 +102,12 @@ app.get('/create', is_authenticated, (req, res) => {
   res.render('create');
 });
 
-app.get('/update/:id', (req, res) => {
+app.get('/update/:id', is_authenticated, (req, res) => {
   var entry = model.read(req.params.id);
   res.render('update', entry);
 });
 
-app.get('/delete/:id', (req, res) => {
+app.get('/delete/:id', is_authenticated, (req, res) => {
   var entry = model.read(req.params.id);
   res.render('delete', {id: req.params.id, title: entry.title});
 });
@@ -123,18 +123,18 @@ function post_data_to_recipe(req) {
   };
 }
 
-app.post('/create', (req, res) => {
+app.post('/create', is_authenticated, (req, res) => {
   var id = model.create(post_data_to_recipe(req));
   res.redirect('/read/' + id);
 });
 
-app.post('/update/:id', (req, res) => {
+app.post('/update/:id', is_authenticated, (req, res) => {
   var id = req.params.id;
   model.update(id, post_data_to_recipe(req));
   res.redirect('/read/' + id);
 });
 
-app.post('/delete/:id', (req, res) => {
+app.post('/delete/:id', is_authenticated, (req, res) => {
   model.delete(req.params.id);
   res.redirect('/');
 });
