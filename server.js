@@ -113,25 +113,22 @@ app.get('/delete/:id', is_authenticated, (req, res) => {
   res.render('delete', {id: req.params.id, title: entry.title});
 });
 
-function post_data_to_recipe(req) {
+function post_data_to_plant(req) {
   return {
-    title: req.body.title, 
+    name: req.body.name, 
     description: req.body.description,
-    img: req.body.img,
-    duration: req.body.duration,
-    ingredients: req.body.ingredients.trim().split(/\s*-/).filter(e => e.length > 0).map(e => ({name: e.trim()})),
-    stages: req.body.stages.trim().split(/\s*-/).filter(e => e.length > 0).map(e => ({description: e.trim()})),
+    image: req.body.image
   };
 }
 
 app.post('/create', is_authenticated, (req, res) => {
-  var id = model.create(post_data_to_recipe(req));
+  var id = model.create(post_data_to_plant(req));
   res.redirect('/read/' + id);
 });
 
 app.post('/update/:id', is_authenticated, (req, res) => {
   var id = req.params.id;
-  model.update(id, post_data_to_recipe(req));
+  model.update(id, post_data_to_plant(req));
   res.redirect('/read/' + id);
 });
 
