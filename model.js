@@ -63,7 +63,9 @@ function add(set) {
   let plants = db.prepare('SELECT * FROM plants').all();
   let q = {
     set : [],
-    answer : null
+    answer : null,
+    answered: false;
+    
   };
   for (let i = 0; i < 4; i++) {
     while(true){
