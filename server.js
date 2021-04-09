@@ -153,11 +153,11 @@ app.get('/check', (req, res) => {
   if (req.query.choice == model.get_questions(req.session.sq, req.session.num_question).answer) req.session.score++
   req.session.num_question++;
   console.log(req.session.score)
-  res.redirect("/play")
+  res.redirect("/play");
 })
 
 app.get('/result', (req, res) => {
-  res.render('index');
+  res.render('showscore', {score: req.session.score});
 });
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'));

@@ -10,12 +10,14 @@
     <label for="{{choice3}}">c. {{choice3name}}</label><br>
     <input type="radio" id="d" name="choice" value="{{choice4}}">
     <label for="{{choice4}}">d. {{choice4name}}</label>
-    {{#next_question}}
-    <input class="btn btn-primary" type="submit" value="Question suivant">
-    {{/next_question}}
-    {{^next_question}}
-    <input class="btn btn-primary" type="submit" value="Result">
-    {{/next_question}}
+    <div>
+      {{#next_question}}
+      <input class="btn btn-primary" type="submit" value="Question suivant">
+      {{/next_question}}
+      {{^next_question}}
+      <input class="btn btn-primary" type="submit" value="Result">
+      {{/next_question}}
+    </div>
 </form>
 
 {{> footer}}
