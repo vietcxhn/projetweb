@@ -88,17 +88,17 @@ exports.generateMCQs = (id) => {
   }
   var set_of_questions_id = db.prepare('INSERT INTO set_of_questions (user_id) VALUES (?)').run(id).lastInsertRowid;
   
-  var insert = db.prepare('INSERT INTO question (set, answer, answered, answered_by) VALUES (set, answer, answered, answered_by)')
+  var insert = db.prepare('INSERT INTO question (set, answer, answered, answered_by) VALUES (@set, @answer, @answered, @answered_by)');
 
   var transaction = db.transaction((set) => {
     for(var id = 0;id < set.length; id++) {
-      var plant = plants[id];
-      plant.id = id;
-      insert1.run(plant);
+      var question = set[id];
+      insert.run(question);
     }
   });
   
   transaction(set);
+  console.log(db.prepare('SELECT * FROM question WHERE set = ?').all(set_of_questions_id))
   return set_of_questions_id
 }
 
