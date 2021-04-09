@@ -118,19 +118,23 @@ exports.is_admin = (id) => {
 exports.get_questions = (sq, num_question) => {
   num_question = parseInt(num_question || 1);
 
-  var question = db.prepare('SELECT question, answer, image FROM question WHERE set_of_questions = ? ORDER BY question_id LIMIT 1 OFFSET ?').all(sq, page - 1);
+  var question = db.prepare('SELECT question, answer FROM question WHERE set_of_questions = ? ORDER BY question_id LIMIT 1 OFFSET ?').all(sq, page - 1);
   var tolist = question.question.split(", ");
   
-  var answerlist = [];
-  for (string in tolist) {
-    answerlist.push(parseInt(string))
-  }
+  var choice1 = parseInt(tolist[0])
+  var choice2 = parseInt(tolist[1])
+  var choice3 = parseInt(tolist[2])
+  var choice4 = parseInt(tolist[3])
+  var image = db.prepare('SELECT image FROM plants WHERE id = ?').get(question.answer);
   
   var result = {
-    results: results,
+    choice1: choice1,
+    choice2: choice1,
+    choice3: choice1,
+    choice1: choice1,
     sq: sq,
     next_question: num_question + 1,
-    num_question: num_question,
+    num_question: num_question
   };
   if(search_result.num_question == 20) search_result.next_page = false;
   return result;
