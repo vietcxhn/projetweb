@@ -125,6 +125,13 @@ exports.get_questions = (sq, num_question) => {
   var choice2 = parseInt(tolist[1])
   var choice3 = parseInt(tolist[2])
   var choice4 = parseInt(tolist[3])
+  
+  var getname = db.prepare('SELECT name FROM plants WHERE id = ?')
+  
+  var choice1name = getname.get(choice1)
+  var choice2name = getname.get(choice2)
+  var choice3name = getname.get(choice3)
+  var choice4name = getname.get(choice4)
   var image = db.prepare('SELECT image FROM plants WHERE id = ?').get(question.answer);
   
   var result = {
@@ -132,6 +139,10 @@ exports.get_questions = (sq, num_question) => {
     choice2: choice2,
     choice3: choice3,
     choice4: choice4,
+    choice1name: choice1name,
+    choice2name: choice2name,
+    choice3name: choice3name,
+    choice4name: choice4name,
     image: image,
     sq: sq,
     next_question: num_question + 1,

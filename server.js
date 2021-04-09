@@ -138,7 +138,8 @@ app.post('/delete/:id', is_authenticated, (req, res) => {
 });
 
 app.get('/play', (req, res) => {
-  model.generateMCQs(req.session.id);
+  let result = model.get_questions(req.session.id);
+  res.render("play", result)
   
 })
 

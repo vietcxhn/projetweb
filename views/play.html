@@ -1,7 +1,7 @@
 {{> header}}
 
   <form>
-    <img src="{{image}}" >
+    <img class="img-fluid" src="{{image}}">
     <input type="radio" id="a" name="gender" value="{{choice1}}">
     <label for="{{choice1}}">Male</label><br>
     <input type="radio" id="b" name="gender" value="{{choice2}}">
@@ -10,6 +10,9 @@
     <label for="{{choice3}}">Female</label><br>
     <input type="radio" id="d" name="gender" value="{{choice4}}">
     <label for="{{choice4}}">Other</label>
-  </form>
+    {{#next_page}}
+    <input class="form-control btn btn-primary" type="submit" value="Login">
+    {{/next_page}}
+</form>
 
 {{> footer}}
