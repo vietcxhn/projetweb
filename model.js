@@ -116,18 +116,15 @@ exports.is_admin = (id) => {
 
 exports.get_questions = (sq, num_question) => {
   var question = db.prepare('SELECT question, answer FROM question WHERE set_of_questions_id = ? ORDER BY question_id LIMIT 1 OFFSET ?').get(sq, num_question - 1);
-  var tolist = question.question.split(", ");
   var getname = db.prepare('SELECT name FROM plants WHERE id = ?')
   var choices = []
-  console.log(tolist)
-  for (let string in tolist){
-    let id = parseInt(string)
-    console.log(string)
+  question.question.split(", ").forEach((a) => {
+    let id = parseInt(a);
     let choice = {};
     choice.choice_id = id
     choice.choice_name = getname.get(id).name
     choices.push(choice)
-  }
+  })
   var image = db.prepare('SELECT image FROM plants WHERE id = ?').get(question.answer).image;
 
   var result = {
