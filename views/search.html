@@ -21,12 +21,15 @@
       {{/results}}
   </div>
 
-  {{#next_page}}
   <div class="row">
     <div class="col">
+      {{#previous_page}}
+      <a class="btn btn-primary" href="/search?query={{query}}&page={{previous_page}}">Page précédente</a>
+      {{/previous_page}}
+      {{#next_page}}
       <a class="btn btn-primary" href="/search?query={{query}}&page={{next_page}}">Page suivante</a>
+      {{/next_page}}
     </div>
   </div>
-  {{/next_page}}
 
 {{> footer}}

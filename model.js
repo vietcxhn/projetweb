@@ -32,14 +32,18 @@ exports.search = (query, page) => {
   var num_found = db.prepare('SELECT count(*) FROM plants WHERE name LIKE ?').get('%' + query + '%')['count(*)'];
   var results = db.prepare('SELECT id as entry, name, image FROM plants WHERE name LIKE ? ORDER BY id LIMIT ? OFFSET ?').all('%' + query + '%', num_per_page, (page - 1) * num_per_page);
 
-  return {
+  var search_result = {
     results: results,
     num_found: num_found, 
     query: query,
     next_page: page + 1,
+    previous_page: page - 1,
     page: page,
     num_pages: parseInt(num_found / num_per_page) + 1,
   };
+  if(search_result.page == search_result.num_pages) search_result.next_page = false;
+  if(search_result.page == 1) search_result.previous_page = false;
+  return search_result;
 };
 
 exports.login = (name, password) => {
