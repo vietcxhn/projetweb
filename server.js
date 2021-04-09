@@ -139,13 +139,14 @@ app.post('/delete/:id', is_authenticated, (req, res) => {
 
 app.get('/start', (req, res) => {
   req.session.sq = model.generateMCQs(req.session.id);
-  let result = model.get_questions(req.session.sq, req.query.num_question)
+  req.session.num_question = 1
+  let result = model.get_questions(req.session.sq, req.session.num_question)
   res.redirect("/play")
 })
 
 
 app.get('/play', (req, res) => {
-  let result = model.get_questions(req.session.sq, req.query.num_question)
+  let result = model.get_questions(req.session.sq, req.session.num_question)
   console.log(result)
   res.render("play", result)
   
