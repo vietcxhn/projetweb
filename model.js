@@ -118,7 +118,7 @@ exports.is_admin = (id) => {
 exports.get_questions = (sq, num_question) => {
   num_question = parseInt(num_question || 1);
 
-  var question = db.prepare('SELECT question, answer FROM question WHERE set_of_questions = ? ORDER BY question_id LIMIT 1 OFFSET ?').all(sq, page - 1);
+  var question = db.prepare('SELECT question, answer FROM question WHERE set_of_questions_id = ? ORDER BY question_id LIMIT 1 OFFSET ?').get(sq, num_question - 1);
   var tolist = question.question.split(", ");
   
   var choice1 = parseInt(tolist[0])

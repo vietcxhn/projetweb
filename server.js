@@ -138,9 +138,14 @@ app.post('/delete/:id', is_authenticated, (req, res) => {
 });
 
 app.get('/play', (req, res) => {
-  let result = model.get_questions(req.session.id);
+  let sq = model.generateMCQs(req.session.id);
+  let result = model.get_questions(sq, req.query.page)
   res.render("play", result)
   
 })
+
+app.get('/result', (req, res) => {
+  res.render('index');
+});
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
