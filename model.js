@@ -142,14 +142,9 @@ exports.get_questions = (sq, num_question) => {
     choice4name: choice4name,
     answer: question.answer,
     image: image,
-    sq: sq,
     next_question: num_question + 1,
-    num_question: num_question,
-    end: false
+    num_question: num_question
   };
-  if(result.num_question == 20) {
-    result.next_question = false;
-    result.end = true;
-  }
+  if(result.num_question == 20) result.next_question = false;
   return result;
 };
