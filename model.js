@@ -64,7 +64,7 @@ function add(set) {
   let q = {
     set : [],
     answer : null,
-    answered: false,
+    answered: 0,
     answered_by: ''
   };
   for (let i = 0; i < 4; i++) {
@@ -81,21 +81,25 @@ function add(set) {
   return set;
 }
 
-exports.generateMCQs = () => {
+exports.generateMCQs = (id) => {
   let set = [];
   for (let i = 0; i < 20; i++) {
     set = add(set);
   }
-  var insert1 = db.prepare('INSERT INTO set_of_questions (name) VALUES (@name)').run();
+  var set_of_questions_id = db.prepare('INSERT INTO set_of_questions (user_id) VALUES (?)').run(id).lastInsertRowid;
+  
+  var insert = db.prepare('INSERT INTO question (set, answer, answered, answered_by) VALUES (set, answer, answered, answered_by)')
 
-  var transaction = db.transaction((plants) => {
-    for(var id = 0;id < plants.length; id++) {
+  var transaction = db.transaction((set) => {
+    for(var id = 0;id < set.length; id++) {
       var plant = plants[id];
       plant.id = id;
       insert1.run(plant);
     }
   });
-  return set;
+  
+  transaction(set);
+  return set_of_questions_id
 }
 
 
