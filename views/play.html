@@ -1,14 +1,14 @@
 {{> header}}
-
-  <form action="{{#next_question}}/play?sq={{sq}}&num_question={{next_question}}{{/next_question}}{{^next_question}}result{{/next_question}}" method="get">
+  <p>Question {{num_question}}</p>
+  <form action="{{#next_question}}/check{{/next_question}}{{^next_question}}result{{/next_question}}" method="get">
     <img class="img-fluid" src="{{image}}">
-    <input type="radio" id="a" name="gender" value="{{choice1}}">
+    <input type="radio" id="a" name="choice" value="{{choice1}}">
     <label for="{{choice1}}">a. {{choice1name}}</label><br>
-    <input type="radio" id="b" name="gender" value="{{choice2}}">
+    <input type="radio" id="b" name="choice" value="{{choice2}}">
     <label for="{{choice2}}">b. {{choice2name}}</label><br>
-    <input type="radio" id="c" name="gender" value="{{choice3}}">
+    <input type="radio" id="c" name="choice" value="{{choice3}}">
     <label for="{{choice3}}">c. {{choice3name}}</label><br>
-    <input type="radio" id="d" name="gender" value="{{choice4}}">
+    <input type="radio" id="d" name="choice" value="{{choice4}}">
     <label for="{{choice4}}">d. {{choice4name}}</label>
     {{#next_question}}
     <input class="btn btn-primary" type="submit" value="Question suivant">
