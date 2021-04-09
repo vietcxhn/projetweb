@@ -86,8 +86,18 @@ exports.generateMCQs = () => {
   for (let i = 0; i < 20; i++) {
     set = add(set);
   }
+  var insert1 = db.prepare('INSERT INTO set_of_questions (name) VALUES (@name)').run();
+
+  var transaction = db.transaction((plants) => {
+    for(var id = 0;id < plants.length; id++) {
+      var plant = plants[id];
+      plant.id = id;
+      insert1.run(plant);
+    }
+  });
   return set;
 }
+
 
 exports.is_admin = (id) => {
   if(db.prepare('SELECT admin FROM user WHERE id = ?').get(id).admin == 1) return true;

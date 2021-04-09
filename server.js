@@ -137,4 +137,8 @@ app.post('/delete/:id', is_authenticated, (req, res) => {
   res.redirect('/');
 });
 
+app.get('/play', (req, res) => {
+  
+})
+
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
