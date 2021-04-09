@@ -93,14 +93,15 @@ exports.generateMCQs = (id) => {
   var transaction = db.transaction((questions) => {
     for(var id = 0;id < questions.length; id++) {
       var question = questions[id];
-      var tostring = '[' + question.question[0] + ', '+ question.question + ', '+ question.question + ', '+ question.question + ']'
+      var tostring = '[' + question.question[0] + ', '+ question.question[1] + ', '+ question.question[2] + ', '+ question.question[3] + ']';
+      question.question = tostring
       question.set_of_questions_id = set_of_questions_id;
       insert.run(question);
     }
   });
   
   transaction(questions);
-  console.log(db.prepare('SELECT * FROM question WHERE set = ?').all(set_of_questions_id))
+  console.log(db.prepare('SELECT * FROM question WHERE set_of_questions_id = ?').all(set_of_questions_id))
   return set_of_questions_id
 }
 
