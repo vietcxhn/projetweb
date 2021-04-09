@@ -129,13 +129,18 @@ exports.get_questions = (sq, num_question) => {
   
   var result = {
     choice1: choice1,
-    choice2: choice1,
-    choice3: choice1,
-    choice1: choice1,
+    choice2: choice2,
+    choice3: choice3,
+    choice4: choice4,
+    image: image,
     sq: sq,
     next_question: num_question + 1,
-    num_question: num_question
+    num_question: num_question,
+    end: false
   };
-  if(search_result.num_question == 20) search_result.next_page = false;
+  if(search_result.num_question == 20) {
+    result.next_page = false;
+    result.end = true;
+  }
   return result;
 };
