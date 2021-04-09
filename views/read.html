@@ -1,5 +1,18 @@
 {{> header}}
+  <div class="row row-cols-1 row-cols-sm-2">
+    <div class="col">
+    <h1>{{name}}</h1>
+    {{#admin}}
+    <p>
+    <a class="btn btn-primary" href="/update/{{id}}">Modifier</a>
+    <a class="btn btn-primary" href="/delete/{{id}}">Supprimer</a>
+    </p>
+    {{/admin}}
 
-  
-
+    <p>{{description}}</p>
+    </div>
+    <div class="col">
+    <img class="img-fluid" src="{{image}}">
+    </div>
+  </div>
 {{> footer}}
