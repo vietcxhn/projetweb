@@ -119,14 +119,18 @@ exports.get_questions = (sq, num_question) => {
   num_question = parseInt(num_question || 1);
 
   var question = db.prepare('SELECT question, answer, image FROM question WHERE set_of_questions = ? ORDER BY question_id LIMIT 1 OFFSET ?').all(sq, page - 1);
-  var tolist = question.question.split(", ")
+  var tolist = question.question.split(", ");
+  
+  var answerlist = [];
+  for (string in tolist) {
+    answerlist.push(parseInt(string))
+  }
   
   var result = {
     results: results,
     sq: sq,
     next_question: num_question + 1,
     num_question: num_question,
-    num_pages: parseInt(num_found / num_per_page) + 1,
   };
   if(search_result.num_question == 20) search_result.next_page = false;
   return result;
