@@ -117,14 +117,16 @@ exports.is_admin = (id) => {
 exports.get_questions = (sq, num_question) => {
   var question = db.prepare('SELECT question, answer FROM question WHERE set_of_questions_id = ? ORDER BY question_id LIMIT 1 OFFSET ?').get(sq, num_question - 1);
   var tolist = question.question.split(", ");
+  var choice = []
   
-  var choice1 = parseInt(tolist[0])
-  var choice2 = parseInt(tolist[1])
-  var choice3 = parseInt(tolist[2])
-  var choice4 = parseInt(tolist[3])
+  for (let string in tolist){
+    choice.push(parseInt(string))
+  }
   
   var getname = db.prepare('SELECT name FROM plants WHERE id = ?')
   
+  var choicename = [];
+  for (let string in )
   var choice1name = getname.get(choice1).name
   var choice2name = getname.get(choice2).name
   var choice3name = getname.get(choice3).name
@@ -132,10 +134,7 @@ exports.get_questions = (sq, num_question) => {
   var image = db.prepare('SELECT image FROM plants WHERE id = ?').get(question.answer).image;
   
   var result = {
-    choice1: choice1,
-    choice2: choice2,
-    choice3: choice3,
-    choice4: choice4,
+    choice: choice,
     choice1name: choice1name,
     choice2name: choice2name,
     choice3name: choice3name,

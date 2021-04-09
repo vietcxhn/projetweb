@@ -3,13 +3,13 @@
   <img class="img-fluid" src="{{image}}">
   <form action="/check" method="get">
     <input type="radio" id="a" name="choice" value="{{choice1}}">
-    <label for="{{choice1}}">a. {{choice1name}}</label><br>  
+    <label for="{{choice[0]}}">a. {{choice1name}}</label><br>  
     <input type="radio" id="b" name="choice" value="{{choice2}}">
-    <label for="{{choice2}}">b. {{choice2name}}</label><br>
+    <label for="{{choice[1]}}">b. {{choice2name}}</label><br>
     <input type="radio" id="c" name="choice" value="{{choice3}}">
-    <label for="{{choice3}}">c. {{choice3name}}</label><br>
+    <label for="{{choice[2]}}">c. {{choice3name}}</label><br>
     <input type="radio" id="d" name="choice" value="{{choice4}}">
-    <label for="{{choice4}}">d. {{choice4name}}</label>
+    <label for="{{choice[3]}}">d. {{choice4name}}</label>
     <div>
       <input class="btn btn-primary" type="submit" value="{{#next_question}}Question suivant{{/next_question}}{{^next_question}}Result{{/next_question}}">
     </div>
