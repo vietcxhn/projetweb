@@ -1,7 +1,7 @@
 {{> header}}
   <p>Question {{num_question}}</p>
   <img class="img-fluid" src="{{image}}">
-  <form action="/{{#next_question}}check{{/next_question}}{{^next_question}}result{{/next_question}}" method="get">
+  <form action="/check" method="get">
     <input type="radio" id="a" name="choice" value="{{choice1}}">
     <label for="{{choice1}}">a. {{choice1name}}</label><br>  
     <input type="radio" id="b" name="choice" value="{{choice2}}">
@@ -11,12 +11,7 @@
     <input type="radio" id="d" name="choice" value="{{choice4}}">
     <label for="{{choice4}}">d. {{choice4name}}</label>
     <div>
-      {{#next_question}}
-      <input class="btn btn-primary" type="submit" value="Question suivant">
-      {{/next_question}}
-      {{^next_question}}
-      <input class="btn btn-primary" type="submit" value="Result">
-      {{/next_question}}
+      <input class="btn btn-primary" type="submit" value="{{#next_question}}Question suivant{{/next_question}}{{^next_question}}Result{{/next_question}}">
     </div>
 </form>
 
