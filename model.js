@@ -97,7 +97,7 @@ exports.generateMCQs = (id) => {
   var transaction = db.transaction((questions) => {
     for(var id = 0;id < questions.length; id++) {
       var question = questions[id];
-      var tostring = '[' + question.question[0] + ', '+ question.question[1] + ', '+ question.question[2] + ', '+ question.question[3] + ']';
+      var tostring = question.question[0] + ', '+ question.question[1] + ', '+ question.question[2] + ', '+ question.question[3];
       question.question = tostring
       question.set_of_questions_id = set_of_questions_id;
       insert.run(question);
@@ -119,7 +119,7 @@ exports.get_questions = (sq, num_question) => {
   num_question = parseInt(num_question || 1);
 
   var question = db.prepare('SELECT question, answer, image FROM question WHERE set_of_questions = ? ORDER BY question_id LIMIT 1 OFFSET ?').all(sq, page - 1);
-  var tolist = 
+  var tolist = question.question.split(", ")
   
   var result = {
     results: results,
