@@ -116,21 +116,18 @@ exports.is_admin = (id) => {
 }
 
 exports.get_questions = (sq, num_question) => {
-  page = parseInt(page || 1);
+  num_question = parseInt(num_question || 1);
 
-  // on utiliser l'opérateur LIKE pour rechercher dans le titre 
-  var num_found = db.prepare('SELECT count(*) FROM plants WHERE name LIKE ?').get('%' + query + '%')['count(*)'];
-  var results = db.prepare('SELECT id as entry, name, image FROM plants WHERE name LIKE ? ORDER BY id LIMIT ? OFFSET ?').all('%' + query + '%', num_per_page, (page - 1) * num_per_page);
-
+  var question = db.prepare('SELECT question, answer, image FROM question WHERE set_of_questions = ? ORDER BY question_id LIMIT 1 OFFSET ?').all(sq, page - 1);
+  var tolist = 
+  
   var result = {
     results: results,
-    query: query,
-    next_page: page + 1,
-    previous_page: page - 1,
-    page: page,
+    sq: sq,
+    next_question: num_question + 1,
+    num_question: num_question,
     num_pages: parseInt(num_found / num_per_page) + 1,
   };
-  if(search_result.page == search_result.num_pages) search_result.next_page = false;
-  if(search_result.page == 1) search_result.previous_page = false;
+  if(search_result.num_question == 20) search_result.next_page = false;
   return result;
 };
