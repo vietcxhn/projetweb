@@ -59,10 +59,10 @@ exports.signup = (name, password) => {
   return id;
 }
 
-function add(set) {
+function add(questions) {
   let plants = db.prepare('SELECT * FROM plants').all();
   let q = {
-    set : [],
+    question : [],
     answer : null,
     answered: 0,
     answered_by: ''
@@ -70,34 +70,36 @@ function add(set) {
   for (let i = 0; i < 4; i++) {
     while(true){
       let random = Math.floor(Math.random() * plants.length);
-      if(!q.set.includes(random)){
-        q.set.push(random);
+      if(!q.question.includes(random)){
+        q.question.push(random);
         break;
       }
     }
   }
-  q.answer = q.set[Math.floor(Math.random() * 4)];
-  set.push(q);
-  return set;
+  q.answer = q.question[Math.floor(Math.random() * 4)];
+  questions.push(q);
+  return questions;
 }
 
 exports.generateMCQs = (id) => {
-  let set = [];
+  let questions = [];
   for (let i = 0; i < 20; i++) {
-    set = add(set);
+    questions = add(questions);
   }
   var set_of_questions_id = db.prepare('INSERT INTO set_of_questions (user_id) VALUES (?)').run(id).lastInsertRowid;
   
-  var insert = db.prepare('INSERT INTO question (set, answer, answered, answered_by) VALUES (@set, @answer, @answered, @answered_by)');
+  var insert = db.prepare('INSERT INTO question (set_of_questions_id, question, answer, answered, answered_by) VALUES (@set_of_questions_id, @question, @answer, @answered, @answered_by)');
 
-  var transaction = db.transaction((set) => {
-    for(var id = 0;id < set.length; id++) {
-      var question = set[id];
+  var transaction = db.transaction((questions) => {
+    for(var id = 0;id < questions.length; id++) {
+      var question = questions[id];
+      var tostring = '[' + question.question[0] + ', '+ question.question + ', '+ question.question + ', '+ question.question + ']'
+      question.set_of_questions_id = set_of_questions_id;
       insert.run(question);
     }
   });
   
-  transaction(set);
+  transaction(questions);
   console.log(db.prepare('SELECT * FROM question WHERE set = ?').all(set_of_questions_id))
   return set_of_questions_id
 }
