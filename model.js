@@ -84,7 +84,7 @@ function add(set) {
 exports.generateMCQs = () => {
   let set = [];
   for (let i = 0; i < 20; i++) {
-    add(set);
+    set = add(set);
   }
   return set;
 }
