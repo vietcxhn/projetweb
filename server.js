@@ -138,10 +138,10 @@ app.post('/delete/:id', is_authenticated, (req, res) => {
 });
 
 app.get('/start', (req, res) => {
-  req.session.score = 0
+  req.session.score = 0;
   req.session.sq = model.generateMCQs(req.session.id);
-  req.session.num_question = 1
-  res.redirect("/play")
+  req.session.num_question = 1;
+  res.redirect("/play");
 })
 
 app.get('/play', (req, res) => {
@@ -153,7 +153,7 @@ app.get('/check', (req, res) => {
   if (req.query.choice == model.get_questions(req.session.sq, req.session.num_question).answer) req.session.score++
   req.session.num_question++;
   if (req.session.num_question<=20) res.redirect("/play");
-  else res.redirect("/result")
+  else res.redirect("/result");
 })
 
 app.get('/result', (req, res) => {
