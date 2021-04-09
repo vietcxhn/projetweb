@@ -150,8 +150,9 @@ app.get('/play', (req, res) => {
 })
 
 app.get('/check', (req, res) => {
+  if (req.query.choice == model.get_questions(req.session.sq, req.session.num_question).answer) req.session.score++
   req.session.num_question++;
-  let result = model.get_questions(req.session.sq, req.session.num_question)
+  console.log(req.session.score)
   res.redirect("/play")
 })
 

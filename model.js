@@ -140,6 +140,7 @@ exports.get_questions = (sq, num_question) => {
     choice2name: choice2name,
     choice3name: choice3name,
     choice4name: choice4name,
+    answer: question.answer,
     image: image,
     sq: sq,
     next_question: num_question + 1,
