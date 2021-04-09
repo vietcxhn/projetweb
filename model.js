@@ -64,8 +64,8 @@ function add(set) {
   let q = {
     set : [],
     answer : null,
-    answered: false;
-    
+    answered: false,
+    answered_by: ''
   };
   for (let i = 0; i < 4; i++) {
     while(true){
