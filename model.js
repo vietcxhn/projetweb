@@ -105,7 +105,6 @@ exports.generateMCQs = (id) => {
   });
   
   transaction(questions);
-  console.log(db.prepare('SELECT * FROM question WHERE set_of_questions_id = ?').all(set_of_questions_id))
   return set_of_questions_id
 }
 
@@ -128,11 +127,11 @@ exports.get_questions = (sq, num_question) => {
   
   var getname = db.prepare('SELECT name FROM plants WHERE id = ?')
   
-  var choice1name = getname.get(choice1)
-  var choice2name = getname.get(choice2)
-  var choice3name = getname.get(choice3)
-  var choice4name = getname.get(choice4)
-  var image = db.prepare('SELECT image FROM plants WHERE id = ?').get(question.answer);
+  var choice1name = getname.get(choice1).name
+  var choice2name = getname.get(choice2).name
+  var choice3name = getname.get(choice3).name
+  var choice4name = getname.get(choice4).name
+  var image = db.prepare('SELECT image FROM plants WHERE id = ?').get(question.answer).image;
   
   var result = {
     choice1: choice1,
@@ -149,8 +148,8 @@ exports.get_questions = (sq, num_question) => {
     num_question: num_question,
     end: false
   };
-  if(search_result.num_question == 20) {
-    result.next_page = false;
+  if(result.num_question == 20) {
+    result.next_question = false;
     result.end = true;
   }
   return result;
