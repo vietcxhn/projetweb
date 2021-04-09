@@ -2,14 +2,10 @@
   <p>Question {{num_question}}:</p>
   <img class="img-fluid" src="{{image}}">
   <form action="/check" method="get">
-    <input type="radio" name="choice" value="{{choice[0]}}">
-    <label for="{{choice}}">a. {{choicename}}</label><br>  
-    <input type="radio" name="choice" value="{{choice[1]}}">
-    <label for="{{choice[1]}}">b. {{choicename[1]}}</label><br>
-    <input type="radio" name="choice" value="{{choice[2]}}">
-    <label for="{{choice[2]}}">c. {{choicename[2]}}</label><br>
-    <input type="radio" name="choice" value="{{choice[3]}}">
-    <label for="{{choice[3]}}">d. {{choicename[3]}}</label>
+    {{#choice}}
+    <input type="radio" name="choice" value="{{choice_id}}">
+    <label for="{{choice_id}}">a. {{choice_name}}</label><br>
+    {{/choice}}
     <div>
       <input class="btn btn-primary" type="submit" value="{{#next_question}}Question suivant{{/next_question}}{{^next_question}}Result{{/next_question}}">
     </div>
