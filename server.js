@@ -146,7 +146,6 @@ app.get('/start', (req, res) => {
 
 
 app.get('/play', (req, res) => {
-  let sq = model.generateMCQs(req.session.id);
   let result = model.get_questions(sq, req.query.num_question)
   res.render("play", result)
   
