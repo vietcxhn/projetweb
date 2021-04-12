@@ -110,7 +110,7 @@ exports.generateMCQs = (id) => {
 
 
 exports.is_admin = (id) => {
-  if(db.prepare('SELECT admin FROM user WHERE id = ?').get(id).admin == 1) return true;
+  if(db.prepare('SELECT admin FROM user WHERE id = ?').get(id).admin == 1) return true; 
   else return false;
 }
 
@@ -131,7 +131,7 @@ exports.get_questions = (sq, num_question) => {
     choice: choices,
     answer: question.answer,
     image: image,
-    next_question: num_question + 1,
+    next_question: true,
     num_question: num_question
   };
   if(result.num_question == 20) result.next_question = false;
