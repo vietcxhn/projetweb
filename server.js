@@ -20,7 +20,8 @@ app.use(cookieSession({
 
 app.use(function (req, res, next) {
   if (req.session.date) {
-    console.log()
+    if (new Date().getTime() - req.session.date.getTime() < 60000) req.session.date = new Date();
+    else res.redirect('/logout')
   }
   if(req.session.user) {
     res.locals.username = req.session.user;
@@ -61,7 +62,7 @@ app.post('/login', (req, res) => {
     req.session.id = model.login(req.body.name, req.body.password);
     req.session.user = req.body.name;
     req.session.is_admin = model.is_admin(req.session.id);
-    console.log(new Date());
+    req.session.date = new Date();
     res.redirect('/');
   }
   else {
