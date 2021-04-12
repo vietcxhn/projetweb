@@ -19,6 +19,9 @@ app.use(cookieSession({
 }));
 
 app.use(function (req, res, next) {
+  if (req.session.date) {
+    console.log()
+  }
   if(req.session.user) {
     res.locals.username = req.session.user;
     res.locals.authenticated = true;
@@ -145,12 +148,12 @@ app.get('/start', (req, res) => {
 })
 
 app.get('/play', (req, res) => {
-  let result = model.get_questions(req.session.sq, req.session.num_question)
-  res.render("play", result)
+  let result = model.get_questions(req.session.sq, req.session.num_question);
+  res.render("play", result);
 })
 
 app.get('/check', (req, res) => {
-  if (req.query.choice == model.get_questions(req.session.sq, req.session.num_question).answer) req.session.score++
+  if (req.query.choice == model.get_questions(req.session.sq, req.session.num_question).answer) req.session.score++;
   if (req.session.num_question < 20) {
     req.session.num_question++;
     res.redirect("/play");
@@ -159,7 +162,7 @@ app.get('/check', (req, res) => {
 })
 
 app.get('/result', (req, res) => {
-  res.render('showscore', {score: req.session.score});
+  res.render('showresult', {score: req.session.score});
 });
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
