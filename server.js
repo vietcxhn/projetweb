@@ -46,6 +46,10 @@ function is_authenticated(req, res, next) {
   else next();
 };
 
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
 app.get('/login', (req, res) => {
   res.render('login');
 });
@@ -83,10 +87,6 @@ app.post('/signup', (req, res) => {
     req.session.signup_fail = true;
     res.redirect('/signup');
   }
-});
-
-app.get('/', (req, res) => {
-  res.render('index');
 });
 
 app.get('/search', (req, res) => {
