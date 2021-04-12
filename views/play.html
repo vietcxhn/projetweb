@@ -3,10 +3,8 @@
   <img class="img-fluid" src="{{image}}">
   <form action="/check" method="get">
     {{#choice}}
-    <label for="{{choice_id}}">
-      <input type="radio" name="choice" value="{{choice_id}}">
-      <i>{{choice_name}}</i>
-    </label><br>
+    <input type="radio" name="choice" id="{{choice_id}}" value="{{choice_id}}">
+    <label for="{{choice_id}}"><i>{{choice_name}}</i></label><br>
     {{/choice}}
     <div>
       <input class="btn btn-primary" type="submit" value="{{#next_question}}Question suivant{{/next_question}}{{^next_question}}Result{{/next_question}}">

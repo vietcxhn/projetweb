@@ -151,11 +151,11 @@ app.get('/play', (req, res) => {
 
 app.get('/check', (req, res) => {
   if (req.query.choice == model.get_questions(req.session.sq, req.session.num_question).answer) req.session.score++
-  if (req.session.num_question < 20) res.redirect("/play");
-  else {
+  if (req.session.num_question < 20) {
     req.session.num_question++;
-    res.redirect("/result");
+    res.redirect("/play");
   }
+  else res.redirect("/result");
 })
 
 app.get('/result', (req, res) => {
