@@ -25,7 +25,7 @@ app.use(function (req, res, next) {
     res.locals.admin = req.session.is_admin;
   }
   else {
-    res.locals.username = ""
+    res.locals.username = "";
     res.locals.authenticated = false;
     res.locals.admin = req.session.is_admin;
   }
@@ -41,8 +41,7 @@ app.use(function (req, res, next) {
 });
 
 function is_authenticated(req, res, next) {
-  console.log(req.session)
-  if(!req.session.is_admin) res.send(401)
+  if(!req.session.is_admin) res.send(401);
   else next();
 };
 
@@ -59,6 +58,7 @@ app.post('/login', (req, res) => {
     req.session.id = model.login(req.body.name, req.body.password);
     req.session.user = req.body.name;
     req.session.is_admin = model.is_admin(req.session.id);
+    console.log(new Date());
     res.redirect('/');
   }
   else {
@@ -151,9 +151,11 @@ app.get('/play', (req, res) => {
 
 app.get('/check', (req, res) => {
   if (req.query.choice == model.get_questions(req.session.sq, req.session.num_question).answer) req.session.score++
-  req.session.num_question++;
-  if (req.session.num_question<=20) res.redirect("/play");
-  else res.redirect("/result");
+  if (req.session.num_question < 20) res.redirect("/play");
+  else {
+    req.session.num_question++;
+    res.redirect("/result");
+  }
 })
 
 app.get('/result', (req, res) => {
