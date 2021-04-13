@@ -1,4 +1,5 @@
 {{> header}}
+
   <p>Question {{num_question}}:</p>
   <img class="img-fluid" src="{{image}}">
   <form action="/check" method="get">
@@ -9,6 +10,6 @@
     <div>
       <input class="btn btn-primary" type="submit" value="{{#next_question}}Question suivant{{/next_question}}{{^next_question}}Result{{/next_question}}">
     </div>
-</form>
+  </form>
 
 {{> footer}}
