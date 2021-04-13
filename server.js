@@ -140,7 +140,7 @@ app.get('/start', (req, res) => {
   req.session.sq = model.generateMCQs(req.session.id);
   req.session.num_question = 1;
   res.redirect("/play");
-})
+});
 
 app.get('/play', (req, res) => {
   let result = model.get_questions(req.session.sq, req.session.num_question);
@@ -154,7 +154,7 @@ app.get('/check', (req, res) => {
     res.redirect("/play");
   }
   else res.redirect("/result");
-})
+});
 
 app.get('/result', (req, res) => {
   res.render('showresult', {score: req.session.score});
