@@ -56,7 +56,7 @@ app.post('/login', (req, res) => {
   if (model.login(req.body.name, req.body.password) != -1){
     req.session.id = model.login(req.body.name, req.body.password);
     req.session.user = req.body.name;
-    req.session.is_admin = model.is_admin(req.session.id);
+    req.session.admin = model.is_admin(req.session.id);
     res.redirect('/');
   }
   else {
@@ -78,7 +78,7 @@ app.post('/signup', (req, res) => {
   if (req.body.password == req.body.c_password && model.signup(req.body.name, req.body.password) != -1) {
     req.session.id = model.login(req.body.name, req.body.password);
     req.session.user = req.body.name;
-    req.session.is_admin = model.is_admin(req.session.id);
+    req.session.admin = model.is_admin(req.session.id);
     res.redirect('/');
   }
   else {
