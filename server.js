@@ -19,15 +19,14 @@ app.use(cookieSession({
 }));
 
 app.use(function (req, res, next) {
+  res.locals.admin = req.session.is_admin;
   if(req.session.user) {
     res.locals.username = req.session.user;
     res.locals.authenticated = true;
-    res.locals.admin = req.session.is_admin;
   }
   else {
     res.locals.username = "";
     res.locals.authenticated = false;
-    res.locals.admin = req.session.is_admin;
   }
   if(req.session.login_fail){
     res.locals.login_fail = true;
