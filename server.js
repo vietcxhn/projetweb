@@ -160,4 +160,8 @@ app.get('/result', (req, res) => {
   res.render('showresult', {score: req.session.score});
 });
 
+app.get('/start', (req, res) => {
+  res.render("challenge");
+});
+
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
