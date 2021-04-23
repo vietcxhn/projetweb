@@ -168,6 +168,12 @@ app.get('/result', (req, res) => {
     model.update_challenged_score(req.session.id_match, req.session.score = 0);
     req.session.acpchall = null;
   }
+  if(req.session.id_match != null) {
+    var chall = model.get_challenge(req.session.id_match)
+    if (chall.challenger_score != null&&chall.challenged_score != null) {
+      
+    }
+  }
   res.render('showresult', {score: req.session.score});
 });
 

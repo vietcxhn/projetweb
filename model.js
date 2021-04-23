@@ -143,7 +143,7 @@ exports.user_list = (id) => {
 };
 
 exports.challenge_list = (id) => {
-  return db.prepare('SELECT * FROM challenge WHERE challenged_id = ? AND winner = 0').all(id).map((val) => {
+  return db.prepare('SELECT * FROM challenge WHERE challenged_id = ? AND challenged_score != NULL').all(id).map((val) => {
     val.challenger_name = db.prepare('SELECT name FROM user WHERE id = ?').get(val.challenger_id).name;
     return val;
   });
@@ -166,4 +166,8 @@ exports.update_challenger_score = (id_match, score) => {
 
 exports.update_challenged_score = (id_match, score) => {
   db.prepare('UPDATE challenge SET challenged_score = ? WHERE id_match = ?').run(score, id_match)
+};
+
+exports.update_winner = (id_match, winner) => {
+  db.prepare('UPDATE challenge SET winner = ? WHERE id_match = ?').run(winner, id_match)
 };
