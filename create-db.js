@@ -15,7 +15,7 @@ db.prepare('DROP TABLE IF EXISTS set_of_questions').run();
 db.prepare('CREATE TABLE set_of_questions (set_of_questions_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER)').run();
 
 db.prepare('DROP TABLE IF EXISTS challenge').run();
-db.prepare('CREATE TABLE challenge (id_match INTEGER PRIMARY KEY AUTOINCREMENT, challenger_id INTEGER, challenged_id INTEGER, challenger_score INTEGER DEFAULT 0, challenged_score INTEGER DEFAULT 0, id_set INTEGER, winner INTEGER DEFAULT 0)').run();
+db.prepare('CREATE TABLE challenge (id_match INTEGER PRIMARY KEY AUTOINCREMENT, challenger_id INTEGER, challenged_id INTEGER, challenger_score INTEGER, challenged_score INTEGER, id_set INTEGER, winner INTEGER DEFAULT 0)').run();
 
 db.prepare("INSERT INTO user VALUES (1, 'admin', 'admin', 1)").run();
 
