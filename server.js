@@ -161,7 +161,8 @@ app.get('/result', (req, res) => {
 });
 
 app.get('/chall', (req, res) => {
-  res.render("challenge", {id: req.session.id});
+  var users = model.users(req.session.id);
+  res.render("challenge", {users: users});
 });
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
