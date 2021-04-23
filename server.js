@@ -162,7 +162,6 @@ app.get('/result', (req, res) => {
 
 app.get('/chall', (req, res) => {
   var users = model.users(req.session.id);
-  console.log(users)
   res.render("challenge", {users: users});
 });
 

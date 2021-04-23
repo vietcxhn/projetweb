@@ -139,7 +139,5 @@ exports.get_questions = (sq, num_question) => {
 };
 
 exports.users = (id) => {
-  return db.prepare('SELECT name FROM user WHERE id != ?').all(id).map((val) => {
-    return val = val.name;
-  })
+  return db.prepare('SELECT name FROM user WHERE id != ?').all(id)
 };
