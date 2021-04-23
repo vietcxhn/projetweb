@@ -171,7 +171,7 @@ app.get('/chall', (req, res) => {
 
 app.post('/chall', (req, res) => {
   req.session.challenge = true;
-  res.redirect("/start")
+  res.redirect("/start");
 });
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
