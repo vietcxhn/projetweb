@@ -166,6 +166,7 @@ app.get('/result', (req, res) => {
 app.get('/chall', (req, res) => {
   var users = model.user_list(req.session.id);
   var challenges = model.challenge_list(req.session.id);
+  console
   res.render("challenge", {users: users, challenges: challenges});
 });
 
