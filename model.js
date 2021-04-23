@@ -143,16 +143,16 @@ exports.user_list = (id) => {
 };
 
 exports.challenge_list = (id) => {
-  return db.prepare('SELECT * FROM challenge WHERE challenged_id = ? AND winner != 0').all(id).map((val) => {
+  return db.prepare('SELECT * FROM challenge WHERE challenged_id = ? AND winner = 0').all(id).map((val) => {
     val.challenger_name = db.prepare('SELECT name FROM user WHERE id = ?').get(val.challenger_id).name;
     return val;
   });
 };
 
 
-exports.create_challenge = (challenger_name, challenged_id) => {
+exports.create_challenge = (challenged_name, challenger_id) => {
   var insert = db.prepare('INSERT INTO challenge(challenger_id, challenged_id) VALUES (?, ?)');
-  var id = db.prepare('SELECT id FROM user WHERE name = ?').get(challenger_name).id;
-  var id_match = insert.run(id, challenged_id).lastInsertRowid;
+  var id = db.prepare('SELECT id FROM user WHERE name = ?').get(challenged_name).id;
+  var id_match = insert.run(challenger_id, id).lastInsertRowid;
   return id_match;
 };
