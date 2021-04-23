@@ -137,11 +137,11 @@ app.post('/delete/:id', is_authenticated, (req, res) => {
 
 app.get('/start', (req, res) => {
   req.session.score = 0;
-  req.session.sq = model.generateMCQs(req.session.id);
   req.session.num_question = 1;
   if(req.session.challenge){
     
   }
+  else req.session.sq = model.generateMCQs(req.session.id);
   res.redirect("/play");
 });
 
@@ -160,6 +160,7 @@ app.get('/check', (req, res) => {
 });
 
 app.get('/result', (req, res) => {
+  if(req.session.challenge) 
   res.render('showresult', {score: req.session.score});
 });
 
@@ -173,7 +174,8 @@ app.get('/chall', (req, res) => {
 
 app.post('/chall', (req, res) => {
   req.session.challenge = true;
-  req.session.id_match = model.create_challenge(req.body.username, req.session.id);
+  req.session.sq = model.generateMCQs(req.session.id)
+  req.session.id_match = model.create_challenge(req.body.username, req.session.id, req.session.sq);
   res.redirect("/start");
 });
 
