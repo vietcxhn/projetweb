@@ -177,4 +177,12 @@ app.post('/chall', (req, res) => {
   res.redirect("/start");
 });
 
+app.get('/acpchall/:id_match', (req, res) => {
+  var users = model.user_list(req.session.id);
+  var challenge = model.get_challenge(req.params.id_match);
+  console.log(req.session.id)
+  console.log(challenges)
+  res.render("challenge", {users: users, challenges: challenges});
+});
+
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
