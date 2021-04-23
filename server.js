@@ -189,7 +189,7 @@ app.post('/chall', (req, res) => {
   req.session.challenge = true;
   req.session.sq = model.generateMCQs(req.session.id)
   req.session.id_match = model.create_challenge(req.body.username, req.session.id, req.session.sq);
-  res.redirect("/chall");
+  res.redirect("/start");
 });
 
 app.get('/acpchall/:id_match', (req, res) => {
