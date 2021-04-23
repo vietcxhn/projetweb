@@ -116,14 +116,14 @@ exports.is_admin = (id) => {
 
 exports.get_questions = (sq, num_question) => {
   var question = db.prepare('SELECT question, answer FROM question WHERE set_of_questions_id = ? ORDER BY question_id LIMIT 1 OFFSET ?').get(sq, num_question - 1);
-  var getname = db.prepare('SELECT name FROM plants WHERE id = ?')
-  var choices = []
+  var getname = db.prepare('SELECT name FROM plants WHERE id = ?');
+  var choices = [];
   question.question.split(", ").forEach((a) => {
     let id = parseInt(a);
     let choice = {};
-    choice.choice_id = id
-    choice.choice_name = getname.get(id).name
-    choices.push(choice)
+    choice.choice_id = id;
+    choice.choice_name = getname.get(id).name;
+    choices.push(choice);
   })
   var image = db.prepare('SELECT image FROM plants WHERE id = ?').get(question.answer).image;
 
@@ -138,6 +138,6 @@ exports.get_questions = (sq, num_question) => {
   return result;
 };
 
-exports.users = (id) => {
-  return db.prepare('SELECT name FROM user WHERE id != ?').all(id)
+exports.user_list = (id) => {
+  return db.prepare('SELECT name FROM user WHERE id != ? AND name != ?').all(id, "admin");
 };
