@@ -1,3 +1,5 @@
+var model = require('./model');
+var users = model
 // source w3school.com
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
