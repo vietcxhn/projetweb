@@ -160,7 +160,7 @@ app.get('/result', (req, res) => {
   res.render('showresult', {score: req.session.score});
 });
 
-app.get('/start', (req, res) => {
+app.get('/chall', (req, res) => {
   res.render("challenge");
 });
 

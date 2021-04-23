@@ -1,5 +1,6 @@
 {{> header}}
 
+  <link rel="stylesheet" href="autocomplete.css">
   <div class="row row-cols-1 row-cols-sm-2">
     <div class="col">
       <!--Make sure the form has the autocomplete function switched off:-->
@@ -14,5 +15,9 @@
       
     </div>
   </div>
+  <script src="myscripts.js"></script>
+  <script>
+    autocomplete(document.getElementById("myInput"), countries);
+  </script>
 
 {{> footer}}
