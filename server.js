@@ -161,7 +161,7 @@ app.get('/result', (req, res) => {
 });
 
 app.get('/chall', (req, res) => {
-  res.render("challenge");
+  res.render("challenge", {id: req.session.id});
 });
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'));

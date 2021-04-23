@@ -1,7 +1,7 @@
 var model = require('./model');
-var users = model
 // source w3school.com
-function autocomplete(inp, arr) {
+function autocomplete(inp, id) {
+  var arr = model.users(id);
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
