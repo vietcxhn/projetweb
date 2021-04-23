@@ -162,7 +162,8 @@ app.get('/result', (req, res) => {
 
 app.get('/chall', (req, res) => {
   var users = model.user_list(req.session.id);
-  res.render("challenge", {users: users});
+  var challenges = model.challenge_list(req.session.id);
+  res.render("challenge", {users: users, challenges: challenges});
 });
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
