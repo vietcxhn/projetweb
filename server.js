@@ -171,6 +171,7 @@ app.get('/chall', (req, res) => {
 
 app.post('/chall', (req, res) => {
   req.session.challenge = true;
+  req.session.id_match = model.create_challenge(req.body.username, req.session.id);
   res.redirect("/start");
 });
 
