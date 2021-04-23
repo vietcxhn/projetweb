@@ -138,10 +138,7 @@ app.post('/delete/:id', is_authenticated, (req, res) => {
 app.get('/start', (req, res) => {
   req.session.score = 0;
   req.session.num_question = 1;
-  if(req.session.challenge){
-    
-  }
-  else req.session.sq = model.generateMCQs(req.session.id);
+  if(!req.session.challenge||!req.session.acpchall) req.session.sq = model.generateMCQs(req.session.id);
   res.redirect("/play");
 });
 
@@ -195,12 +192,10 @@ app.post('/chall', (req, res) => {
 
 app.get('/acpchall/:id_match', (req, res) => {
   var challenge = model.get_challenge(req.params.id_match);
-  req.session.score = 0;
   req.session.sq = challenge.id_set;
-  req.session.num_question = 1;
   req.session.acpchall = true;
   req.session.id_match = req.params.id_match;
-  res.redirect("/play");
+  res.redirect("/start");
 });
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
