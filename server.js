@@ -160,7 +160,14 @@ app.get('/check', (req, res) => {
 });
 
 app.get('/result', (req, res) => {
-  if(req.session.challenge) 
+  if(req.session.challenge) {
+    model.update_challenger_score(req.session.id_match, req.session.score = 0);
+    req.session.challenge = null;
+  }
+  else if (req.session.acpchall) {
+    model.update_challenged_score(req.session.id_match, req.session.score = 0);
+    req.session.acpchall = null;
+  }
   res.render('showresult', {score: req.session.score});
 });
 
@@ -176,7 +183,7 @@ app.post('/chall', (req, res) => {
   req.session.challenge = true;
   req.session.sq = model.generateMCQs(req.session.id)
   req.session.id_match = model.create_challenge(req.body.username, req.session.id, req.session.sq);
-  res.redirect("/start");
+  res.redirect("/chall");
 });
 
 app.get('/acpchall/:id_match', (req, res) => {
