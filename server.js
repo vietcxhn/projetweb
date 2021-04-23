@@ -161,11 +161,11 @@ app.get('/check', (req, res) => {
 
 app.get('/result', (req, res) => {
   if(req.session.challenge) {
-    model.update_challenger_score(req.session.id_match, req.session.score = 0);
+    model.update_challenger_score(req.session.id_match, req.session.score);
     req.session.challenge = null;
   }
   else if (req.session.acpchall) {
-    model.update_challenged_score(req.session.id_match, req.session.score = 0);
+    model.update_challenged_score(req.session.id_match, req.session.score);
     req.session.acpchall = null;
   }
   if(req.session.id_match != null) {
