@@ -154,7 +154,7 @@
   <div class="row row-cols-1 row-cols-sm-2">
     <div class="col">
       <!--Make sure the form has the autocomplete function switched off:-->
-      <form class="d-flex" autocomplete="off" action="/action_page.php">
+      <form class="d-flex" autocomplete="off" method="post" action="/chall">
         <div class="autocomplete" style="width:300px;">
           <input class="form-control me-2" id="myInput" type="text" name="username" placeholder="Nom d'utilisateur">
         </div>
@@ -164,7 +164,7 @@
     <div class="col">
       {{#challenges}}
       <p>
-        {{challenger_name}}
+        {{challenger_name}}: {{challenger_score}} <a class="float-right">Jouer</a>
       </p>
       {{/challenges}}
     </div>

@@ -139,6 +139,9 @@ app.get('/start', (req, res) => {
   req.session.score = 0;
   req.session.sq = model.generateMCQs(req.session.id);
   req.session.num_question = 1;
+  if(req.session.challenge){
+    
+  }
   res.redirect("/play");
 });
 
@@ -164,6 +167,11 @@ app.get('/chall', (req, res) => {
   var users = model.user_list(req.session.id);
   var challenges = model.challenge_list(req.session.id);
   res.render("challenge", {users: users, challenges: challenges});
+});
+
+app.post('/chall', (req, res) => {
+  req.session.challenge = true;
+  res.redirect("/start")
 });
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'));
