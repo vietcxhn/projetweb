@@ -137,3 +137,9 @@ exports.get_questions = (sq, num_question) => {
   if(result.num_question == 20) result.next_question = false;
   return result;
 };
+
+exports.users = (id) => {
+  return db.prepare('SELECT name FROM user WHERE id != ?').all(id).map((val) => {
+    return val = val.name;
+  })
+};
