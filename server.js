@@ -171,7 +171,8 @@ app.get('/result', (req, res) => {
   if(req.session.id_match != null) {
     var chall = model.get_challenge(req.session.id_match)
     if (chall.challenger_score != null&&chall.challenged_score != null) {
-      
+      if (chall.challenger_score > chall.challenged_score) model.update_winner(chall.id_match, chall.challenger_id);
+      else model.update_winner(chall.id_match, chall.challenged_id);
     }
   }
   res.render('showresult', {score: req.session.score});
