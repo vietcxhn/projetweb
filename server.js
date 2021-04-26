@@ -19,7 +19,7 @@ app.use(cookieSession({
 }));
 
 app.use(function (req, res, next) {
-  res.locals.admin = req.session.is_admin;
+  res.locals.admin = req.session.admin;
   if(req.session.user) {
     res.locals.username = req.session.user;
     res.locals.authenticated = true;
@@ -40,7 +40,7 @@ app.use(function (req, res, next) {
 });
 
 function is_authenticated(req, res, next) {
-  if(!req.session.is_admin) res.send(401);
+  if(!req.session.admin) res.send(401);
   else next();
 };
 
@@ -108,7 +108,7 @@ app.get('/update/:id', is_authenticated, (req, res) => {
 
 app.get('/delete/:id', is_authenticated, (req, res) => {
   var entry = model.read(req.params.id);
-  res.render('delete', {id: req.params.id, title: entry.title});
+  res.render('delete', {id: req.params.id, title: entry.name});
 });
 
 function post_data_to_plant(req) {
