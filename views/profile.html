@@ -1,10 +1,16 @@
 {{> header}}
-
+  <form class="d-flex" action="/search">
+    <input class="me-2" type="text" placeholder="Nom d'utilisateur" name="query" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Chercher</button>
+  </form>
   <h1>
     {{name}}
   </h1>
   <p>
     gagné: {{win}}
+  </p>
+  <p>
+    match nul: {{draw}}
   </p>
   <p>
     perdu: {{lose}}
