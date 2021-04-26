@@ -150,8 +150,8 @@
       color: #ffffff;
     }
   </style>
-  <div class="row row-cols-1 row-cols-sm-2">
-    <div class="col">
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col p-b-sm">
       <!--Make sure the form has the autocomplete function switched off:-->
       <form class="d-flex" autocomplete="off" method="post" action="/challenge">
         <div class="autocomplete" style="width:300px;">
@@ -165,24 +165,27 @@
         Défi d'un autre utilisateur
       </p>
       <ul>
-        {{#challenged}}
+        {{#challenged_list}}
         <li>
           {{challenger_name}}: {{challenger_score}} <a href="/accept_challenge/{{id_match}}">Jouer</a>
         </li>
-        {{/challenged}}
-        {{^challenged}}
+        {{/challenged_list}}
+        {{^challenged_list}}
         <li>No challenge</li>
-        {{/challenged}}
+        {{/challenged_list}}
       </ul>
+      <p>
+        Votre défi
+      </p>
       <ul>
-        {{#challenge}}
+        {{#challenge_list}}
         <li>
-          {{challenger_name}}: {{challenger_score}} - {{challenged_score}} <a href="/restart_challenge/{{id_match}}">Recommence</a>
+          {{challenged_name}}: {{challenged_score}} <a href="/restart_challenge/{{id_match}}">Recommence</a>
         </li>
-        {{/challenge}}
-        {{^challenge}}
+        {{/challenge_list}}
+        {{^challenge_list}}
         <li>No challenge</li>
-        {{/challenge}}
+        {{/challenge_list}}
       </ul>
     </div>
   </div>

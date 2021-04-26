@@ -166,7 +166,7 @@ app.get('/result', (req, res) => {
     req.session.acpchall = null;
   }
   if(req.session.id_match != null) {
-    var chall = model.get_challenge(req.session.id_match)
+    var chall = model.get_challenge(req.session.id_match);
     if (chall.challenger_score != null&&chall.challenged_score != null) {
       if (chall.challenger_score > chall.challenged_score) model.update_winner(chall.id_match, chall.challenger_id);
       else model.update_winner(chall.id_match, chall.challenged_id);
@@ -180,7 +180,7 @@ app.get('/challenge', (req, res) => {
   var challenge = model.challenge_list(req.session.id);
   var challenged = model.challenged_list(req.session.id);
   res.render("challenge", {users: users, challenged_list: challenged, challenge_list: challenge});
-});
+});;
 
 app.post('/challenge', (req, res) => {
   req.session.challenge = true;
