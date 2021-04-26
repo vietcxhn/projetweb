@@ -69,7 +69,7 @@ exports.get_user_id = (name) => {
 
 exports.get_user_data = (id) => {
   var user = db.prepare('SELECT name FROM user WHERE id = ?').get(id);
-  var challenge = db.prepare('SELECT * FROM challenge WHERE challenger_id = ? OR challenged_id = ?').all(id, id);
+  var challenge = db.prepare('SELECT * FROM challenge WHERE (challenger_id = ? OR challenged_id = ?) AND winner != 0').all(id, id);
   var win = challenge.filter((val) => {return val.winner == id}).length;
   var lose = challenge.filter((val) => {return val.winner != id}).length;
   var draw = challenge.filter((val) => {return val.winner == -1}).length;

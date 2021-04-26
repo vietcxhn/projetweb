@@ -98,7 +98,7 @@ app.get("/profile/:id", (req, res) => {
 app.get("/search_user", (req, res) => {
   var id = model.get_user_id(req.query.username);
   if(id == null) res.redirect("/profile/"+req.session.id);
-  res.redirect("/profile/"+id);
+  res.redirect("/profile/" + id);
 });
 
 app.get('/search', (req, res) => {
