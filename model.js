@@ -64,8 +64,15 @@ exports.signup = (name, password) => {
 }
 
 exports.get_user_data = (id) => {
-  var user = db.prepare('SELECT * FROM user WHERE id = ?').get(id)
-  var win = db.prepare('SELECT * FROM challenge WHERE (challenger_id = ?)')
+  var user = db.prepare('SELECT name FROM user WHERE id = ?').get(id);
+  var challenge = db.prepare('SELECT * FROM challenge WHERE challenger_id = ? OR challened_id = ?').all(id, id);
+  var win = challenge.filter((val) => {return val.winner == id}).length;
+  var lose = challenge.filter((val) => {return val.winner != id}).length;
+  return {
+    name: user.name,
+    win: win,
+    lose: lose
+  }
 }
 
 function add(questions) {

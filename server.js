@@ -88,7 +88,8 @@ app.post('/signup', (req, res) => {
 });
 
 app.get("/profile/:id", (req, res) => {
-  
+  var user_data = model.get_user_data(req.params.id);
+  res.render("profile", user_data);
 });
 
 app.get('/search', (req, res) => {
