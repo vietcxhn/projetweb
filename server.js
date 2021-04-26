@@ -21,12 +21,14 @@ app.use(cookieSession({
 app.use(function (req, res, next) {
   res.locals.admin = req.session.admin;
   if(req.session.user) {
+    res.locals.id = req.session.id
     res.locals.username = req.session.user;
     res.locals.authenticated = true;
   }
   else {
-    res.locals.username = "";
-    res.locals.authenticated = false;
+    res.locals.id = null
+    res.locals.username = null;
+    res.locals.authenticated = null;
   }
   if(req.session.login_fail){
     res.locals.login_fail = true;
@@ -174,7 +176,7 @@ app.get('/result', (req, res) => {
     var chall = model.get_challenge(req.session.id_match);
     if (chall.challenger_score != null&&chall.challenged_score != null) {
       if (chall.challenger_score > chall.challenged_score) model.update_winner(chall.id_match, chall.challenger_id);
-      else model.update_winner(chall.id_match, chall.challenged_id);
+      else if (chall.challenger_score < chall.challenged_score) model.update_winner(chall.id_match, chall.challenged_id);
     }
   }
   res.render('showresult', {score: req.session.score});
