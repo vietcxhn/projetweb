@@ -63,6 +63,11 @@ exports.signup = (name, password) => {
   return id;
 }
 
+exports.get_user_data = (id) => {
+  var user = db.prepare('SELECT * FROM user WHERE id = ?').get(id)
+  var win = db.prepare('SELECT * FROM challenge WHERE (challenger_id = ?)')
+}
+
 function add(questions) {
   let plants = db.prepare('SELECT * FROM plants').all();
   let q = {

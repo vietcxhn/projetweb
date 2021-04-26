@@ -87,6 +87,10 @@ app.post('/signup', (req, res) => {
   }
 });
 
+app.get("/profile/:id", (req, res) => {
+  
+});
+
 app.get('/search', (req, res) => {
   var found = model.search(req.query.query, req.query.page);
   res.render('search', found);
