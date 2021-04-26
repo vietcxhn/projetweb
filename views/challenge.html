@@ -161,11 +161,29 @@
       </form>
     </div>
     <div class="col">
-      {{#challenges}}
       <p>
-        {{challenger_name}}: {{challenger_score}} <a href="/accept_challenge/{{id_match}}">Jouer</a>
+        Défi d'un autre utilisateur
       </p>
-      {{/challenges}}
+      <ul>
+        {{#challenged}}
+        <li>
+          {{challenger_name}}: {{challenger_score}} <a href="/accept_challenge/{{id_match}}">Jouer</a>
+        </li>
+        {{/challenged}}
+        {{^challenged}}
+        <li>No challenge</li>
+        {{/challenged}}
+      </ul>
+      <ul>
+        {{#challenge}}
+        <li>
+          {{challenger_name}}: {{challenger_score}} - {{challenged_score}} <a href="/restart_challenge/{{id_match}}">Recommence</a>
+        </li>
+        {{/challenge}}
+        {{^challenge}}
+        <li>No challenge</li>
+        {{/challenge}}
+      </ul>
     </div>
   </div>
   <script>

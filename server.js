@@ -184,7 +184,7 @@ app.get('/challenge', (req, res) => {
 
 app.post('/challenge', (req, res) => {
   req.session.challenge = true;
-  req.session.sq = model.generateMCQs(req.session.id)
+  req.session.sq = model.generateMCQs(req.session.id);
   req.session.id_match = model.create_challenge(req.body.username, req.session.id, req.session.sq);
   res.redirect("/start");
 });
@@ -193,6 +193,14 @@ app.get('/accept_challenge/:id_match', (req, res) => {
   var challenge = model.get_challenge(req.params.id_match);
   req.session.sq = challenge.id_set;
   req.session.acpchall = true;
+  req.session.id_match = req.params.id_match;
+  res.redirect("/start");
+});
+
+app.get('/restart_challenge/:id_match', (req, res) => {
+  var challenge = model.get_challenge(req.params.id_match);
+  req.session.sq = challenge.id_set;
+  req.session.challenge = true;
   req.session.id_match = req.params.id_match;
   res.redirect("/start");
 });
