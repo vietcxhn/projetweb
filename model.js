@@ -142,8 +142,15 @@ exports.user_list = (id) => {
   return db.prepare('SELECT name FROM user WHERE id != ? AND name != ?').all(id, "admin");
 };
 
-exports.challenge_list = (id) => {
+exports.challenged_list = (id) => {
   return db.prepare('SELECT * FROM challenge WHERE challenged_id = ? AND challenged_score IS NULL').all(id).map((val) => {
+    val.challenger_name = db.prepare('SELECT name FROM user WHERE id = ?').get(val.challenger_id).name;
+    return val;
+  });
+};
+
+exports.challenge_list = (id) => {
+  return db.prepare('SELECT * FROM challenge WHERE challenger_id = ? AND challenged_score IS NULL').all(id).map((val) => {
     val.challenger_name = db.prepare('SELECT name FROM user WHERE id = ?').get(val.challenger_id).name;
     return val;
   });

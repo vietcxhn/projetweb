@@ -175,22 +175,21 @@ app.get('/result', (req, res) => {
   res.render('showresult', {score: req.session.score});
 });
 
-app.get('/chall', (req, res) => {
+app.get('/challenge', (req, res) => {
   var users = model.user_list(req.session.id);
-  var challenges = model.challenge_list(req.session.id);
-  console.log(req.session.id)
-  console.log(challenges)
-  res.render("challenge", {users: users, challenges: challenges});
+  var challenge = model.challenge_list(req.session.id);
+  var challenged = model.challenged_list(req.session.id);
+  res.render("challenge", {users: users, challenged_list: challenged, challenge_list: challenge});
 });
 
-app.post('/chall', (req, res) => {
+app.post('/challenge', (req, res) => {
   req.session.challenge = true;
   req.session.sq = model.generateMCQs(req.session.id)
   req.session.id_match = model.create_challenge(req.body.username, req.session.id, req.session.sq);
   res.redirect("/start");
 });
 
-app.get('/acpchall/:id_match', (req, res) => {
+app.get('/accept_challenge/:id_match', (req, res) => {
   var challenge = model.get_challenge(req.params.id_match);
   req.session.sq = challenge.id_set;
   req.session.acpchall = true;
