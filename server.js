@@ -199,6 +199,7 @@ app.get('/challenge', (req, res) => {
 });;
 
 app.post('/challenge', (req, res) => {
+  if (model.get_user_id(req.body.username) == -1) res.redirect("/challenge")
   req.session.challenge = true;
   req.session.sq = model.generateMCQs(req.session.id);
   req.session.id_match = model.create_challenge(req.body.username, req.session.id, req.session.sq);

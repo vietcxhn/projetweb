@@ -64,7 +64,9 @@ exports.signup = (name, password) => {
 }
 
 exports.get_user_id = (name) => {
-  return db.prepare('SELECT * FROM user WHERE name = ?').get(name).id;
+  var user = db.prepare('SELECT * FROM user WHERE name = ?').get(name)
+  if (user != undefined) return user.id;
+  else return -1
 }
 
 exports.get_user_data = (id) => {
