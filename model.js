@@ -168,7 +168,7 @@ exports.challenged_list = (id) => {
 };
 
 exports.challenge_list = (id) => {
-  return db.prepare('SELECT * FROM challenge WHERE challenger_id = ? AND challenged_score IS NULL').all(id).map((val) => {
+  return db.prepare('SELECT * FROM challenge WHERE challenger_id = ? AND challenger_score IS NULL').all(id).map((val) => {
     val.challenged_name = db.prepare('SELECT name FROM user WHERE id = ?').get(val.challenger_id).name;
     return val;
   });

@@ -21,12 +21,12 @@ app.use(cookieSession({
 app.use(function (req, res, next) {
   res.locals.admin = req.session.admin;
   if(req.session.user) {
-    res.locals.id = req.session.id
+    res.locals.id = req.session.id;
     res.locals.username = req.session.user;
     res.locals.authenticated = true;
   }
   else {
-    res.locals.id = null
+    res.locals.id = null;
     res.locals.username = null;
     res.locals.authenticated = null;
   }
