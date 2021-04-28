@@ -194,6 +194,7 @@ app.get('/challenge', (req, res) => {
   var users = model.user_list(req.session.id);
   var challenge = model.challenge_list(req.session.id);
   var challenged = model.challenged_list(req.session.id);
+  console.log(challenge)
   res.render("challenge", {users: users, challenged_list: challenged, challenge_list: challenge});
 });;
 
