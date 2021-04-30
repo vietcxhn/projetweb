@@ -142,7 +142,7 @@ app.get('/create', is_authenticated, (req, res) => {
 
 app.get('/update/:id', is_authenticated, (req, res) => {
   var entry = model.read(req.params.id);
-  res.render('update', entry);
+  res.render('create', entry);
 });
 
 app.get('/delete/:id', is_authenticated, (req, res) => {
