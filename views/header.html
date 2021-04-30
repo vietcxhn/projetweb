@@ -45,10 +45,12 @@
             </li>
             {{/authenticated}}
           </ul>
+          {{#authenticated}}
           <form class="d-flex" action="/search">
             <input class="form-control me-2" type="text" placeholder="Requête" name="query" aria-label="Search" value="{{query}}">
             <button class="btn btn-outline-success" type="submit">Chercher</button>
           </form>
+          {{/authenticated}}
         </div>
       </div>
     </nav>
