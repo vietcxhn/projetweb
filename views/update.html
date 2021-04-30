@@ -1,5 +1,14 @@
 {{> header}}
+  <form action="/create" method="post">
+    <div class="row row-cols-1 row-cols-sm-2">
+      <div class="col">
+        <h1> Ajouter un plant </h1>
+        <p>Nom : <input class="form-control" type="text" name="name" value="{{name}}"></p>
+        <p>Description : <br> <textarea class="form-control" name="description">{{description}}</textarea></p>
+        <p>Image : <input class="form-control" type="text" name="img" value="{{image}}"></p>
 
-  
-
+        <input class="form-control btn btn-primary" type="submit" value="Ajouter">
+      </div>
+    </div>
+  </form>
 {{> footer}}

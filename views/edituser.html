@@ -1,8 +1,13 @@
 {{> header}}
-  <form action="/edit-user-form/{{id}}" method="post">
-    <input class="form-control" type="text" name="name" placeholder="Nom D'utilisateur" value="{{name}}"><br>
-    <input class="form-control" type="password" name="password" placeholder="Mot de passe" value="{{password}}"><br>
-    <input class="form-control btn btn-primary" type="submit" value="Modifier">
-  </form>
+
+<div class="row row-cols-1 row-cols-sm-2">
+  <div class="col">
+    <form action="/edit-user-form/{{id}}" method="post">
+      <input class="form-control" type="text" name="name" placeholder="Nom D'utilisateur" value="{{name}}"><br>
+      <input class="form-control" type="password" name="password" placeholder="Mot de passe" value="{{password}}"><br>
+      <input class="form-control btn btn-primary" type="submit" value="Modifier">
+    </form>
+  </div>
+</div>
 
 {{> footer}}
