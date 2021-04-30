@@ -156,7 +156,7 @@ function post_data_to_plant(req) {
     description: req.body.description,
     image: req.body.image
   };
-}
+};
 
 app.post('/create', is_authenticated, (req, res) => {
   var id = model.create(post_data_to_plant(req));

@@ -1,11 +1,13 @@
 {{> header}}
-
-Voulez-vous vraiment supprimer "{{name}}" ?
+<div class="row row-cols-1 row-cols-sm-2">
+  <div class="col">
+    Voulez-vous vraiment supprimer "{{name}}" ?
 		<form action="/delete-user-form/{{id}}" method="post">
 			<input class="form-control btn btn-primary mr-2" type="submit" value="Supprimer">
 		</form>
 		<form action="/profile_list" method="get">
 			<input class="form-control btn btn-primary" type="submit" value="Retour">
 		</form>
-
+  </div>
+</div>
 {{> footer}}
