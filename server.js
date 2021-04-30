@@ -47,7 +47,8 @@ function is_authenticated(req, res, next) {
 };
 
 app.get('/', (req, res) => {
-  res.render('index');
+  if (!req.session.id) res.redirect("/login");
+  else res.render('index');
 });
 
 app.get('/login', (req, res) => {
@@ -69,7 +70,7 @@ app.post('/login', (req, res) => {
 
 app.get('/logout', (req, res) => {
   req.session = null;
-  res.redirect('/');
+  res.redirect('/login');
 });
 
 app.get('/signup', (req, res) => {
