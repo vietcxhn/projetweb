@@ -93,13 +93,12 @@ app.post('/signup', (req, res) => {
 app.get("/profile/:id", (req, res) => {
   var user_data = model.get_user_data(req.params.id);
   user_data.users = model.user_list(req.session.id);
-  res.render("profile", user_data);
+  res.render("readprofile", user_data);
 });
 
-app.get("/profile", (req, res) => {
-  var user_data = model.get_user_data(req.params.id);
-  user_data.users = model.user_list(req.session.id);
-  res.render("readprofile", user_data);
+app.get("/profile_list", (req, res) => {
+  var user_list = model.user_list(-1);
+  res.render("profilelist", {user_list: user_list});
 });
 
 app.get("/search_user", (req, res) => {
