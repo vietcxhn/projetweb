@@ -32,6 +32,10 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="https://projetweb99.glitch.me/profile/{{id}}">Profil</a></li>
                 <li><hr class="dropdown-divider"></li>
+                {{#admin}}
+                <li><a class="dropdown-item" href="/user">Gestion des utilisateurs</a></li>
+                <li><hr class="dropdown-divider"></li>
+                {{/admin}}
                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
               </ul>
             </li>
