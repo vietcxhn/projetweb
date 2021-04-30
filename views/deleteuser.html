@@ -1,0 +1,11 @@
+{{> header}}
+
+Voulez-vous vraiment supprimer "{{name}}" ?
+		<form action="/delete-user-form/{{id}}" method="post">
+			<input type="submit" value="Supprimer">
+		</form>
+		<form action="/profilelist" method="get">
+			<input type="submit" value="Retour">
+		</form>
+
+{{> footer}}

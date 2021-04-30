@@ -98,7 +98,8 @@ app.get("/profile/:id", (req, res) => {
 
 app.get("/profile_list", (req, res) => {
   var user_list = model.user_list(-1);
-  res.render("profilelist", {user_list: user_list});
+  console.log(user_list);
+  res.render("profilelist", {userlist: user_list});
 });
 
 app.get("/search_user", (req, res) => {
