@@ -96,6 +96,12 @@ app.get("/profile/:id", (req, res) => {
   res.render("profile", user_data);
 });
 
+app.get("/profile", (req, res) => {
+  var user_data = model.get_user_data(req.params.id);
+  user_data.users = model.user_list(req.session.id);
+  res.render("readprofile", user_data);
+});
+
 app.get("/search_user", (req, res) => {
   var id = model.get_user_id(req.query.username);
   if(id == null) res.redirect("/profile/"+req.session.id);
