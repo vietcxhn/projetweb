@@ -62,10 +62,26 @@ exports.signup = (name, password) => {
   return id;
 }
 
+exports.get_user = (id) => {
+  var user = db.prepare('SELECT * FROM user WHERE id = ?').get(id)
+  if (user != undefined) return user;
+  else return null;
+}
+
 exports.get_user_id = (name) => {
   var user = db.prepare('SELECT * FROM user WHERE name = ?').get(name)
   if (user != undefined) return user.id;
   else return -1
+}
+
+exports.delete_user = function(id) {
+  db.prepare('DELETE FROM user WHERE id = ?').run(id);
+}
+
+exports.update_user = function(id, user) {
+  var result = db.prepare('UPDATE user SET name = @name, password = @password WHERE id = ?').run(user, id);
+  if(result.changes == 1) return true;
+  else return false;
 }
 
 exports.get_user_data = (id) => {

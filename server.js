@@ -102,6 +102,24 @@ app.get("/profile_list", (req, res) => {
   res.render("profilelist", {userlist: user_list});
 });
 
+app.get('/delete-user-form/:id', (req, res) => {
+	res.render('deleteuser', model.get_user(req.params.id));
+})
+
+app.post('/delete-user-form/:id', (req, res) => {
+	model.delete_user(req.params.id);
+	res.redirect('/profile_list');
+});
+
+app.get('/edit-user-form/:id', (req, res) => {
+	res.render('edituser', model.get_user(req.params.id));
+})
+
+app.post('/edit-user-form/:id', (req, res) => {
+	model.update_user(req.params.id, { name: req.body.name, password: req.body.password});
+	res.redirect('/profile_list');
+})
+
 app.get("/search_user", (req, res) => {
   var id = model.get_user_id(req.query.username);
   if(id == null) res.redirect("/profile/"+req.session.id);
