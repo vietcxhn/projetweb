@@ -3,7 +3,10 @@
 <h3>Liste d'utilisateur</h3>
 		<ul>
 		  {{#userlist}}
-			<li>{{name}} <a href="/profile/{{id}}">Détail</a> <a href="/delete-user-form/{{id}}">Supprimer</a> <a href="/edit-user-form/{{id}}">Modifier</a>
+			<li>{{name}} 
+        <a href="/profile/{{id}}">Détail</a> 
+        <a href="/delete-user-form/{{id}}">Supprimer</a> 
+        <a href="/edit-user-form/{{id}}">Modifier</a>
 			</li>
 		  {{/userlist}}
 		</ul>
