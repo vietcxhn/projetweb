@@ -208,7 +208,7 @@ app.get('/result', (req, res) => {
     if (chall.challenger_score != null&&chall.challenged_score != null) {
       if (chall.challenger_score > chall.challenged_score) model.update_winner(chall.id_match, chall.challenger_id);
       else if (chall.challenger_score < chall.challenged_score) model.update_winner(chall.id_match, chall.challenged_id);
-      else model.update_winner(chall.id_match, -1)
+      else model.update_winner(chall.id_match, -1);
     }
   }
   res.render('showresult', {score: req.session.score});
@@ -222,7 +222,7 @@ app.get('/challenge', (req, res) => {
 });;
 
 app.post('/challenge', (req, res) => {
-  if (model.get_user_id(req.body.username) == -1) res.redirect("/challenge")
+  if (model.get_user_id(req.body.username) == -1) res.redirect("/challenge");
   req.session.challenge = true;
   req.session.sq = model.generateMCQs(req.session.id);
   req.session.id_match = model.create_challenge(req.body.username, req.session.id, req.session.sq);
