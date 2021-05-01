@@ -18,11 +18,19 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             {{#authenticated}}
             <li class="nav-item">
-              <a class="nav-link" href="/search">Apprendre</a>
+              <form method="get" action="/search">
+                <button class="btn nav-link">
+                  Apprendre
+                </button>
+              </form>
             </li>
             {{#admin}}
             <li class="nav-item">
-              <a class="nav-link" href="create">Ajouter un plant</a>
+              <form method="get" action="/create">
+                <button class="btn nav-link">
+                  Ajouter un plant
+                </button>
+              </form>
             </li>
             {{/admin}}
             <li class="nav-item dropdown">
@@ -30,13 +38,31 @@
                 {{username}}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/profile/{{id}}">Profil</a></li>
+                <li>
+                  <form method="get" action="/profile/{{id}}">
+                    <button class="btn dropdown-item">
+                      Profil
+                    </button>
+                  </form>
+                </li>
                 <li><hr class="dropdown-divider"></li>
                 {{#admin}}
-                <li><a class="dropdown-item" href="/profile_list">Gestion des utilisateurs</a></li>
+                <li>
+                  <form method="get" action="/profile_list">
+                    <button class="btn dropdown-item">
+                      Gestion des utilisateurs
+                    </button>
+                  </form>
+                </li>
                 <li><hr class="dropdown-divider"></li>
                 {{/admin}}
-                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                <li>
+                  <form method="get" action="/logout">
+                    <button class="btn dropdown-item">
+                      Logout
+                    </button>
+                  </form>
+                </li>
               </ul>
             </li>
             {{/authenticated}}
